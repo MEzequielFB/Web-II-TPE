@@ -8,7 +8,7 @@ class LibrosView {
     function __construct() {
 
         $this->smarty = new Smarty();
-        $this->smarty->assign("base_url", define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/'));
+        $this->smarty->assign("base_url", BASE_URL);
     }
 
     function showHome($libros) {
