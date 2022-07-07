@@ -12,5 +12,11 @@ class LibrosController {
         $this->model = new LibrosModel();
         $this->view = new LibrosView();
     }
+
+    function showHome() {
+
+        $libros = $this->model->getLibros();
+        $this->view->showHome($libros);
+    }
 }
 ?>

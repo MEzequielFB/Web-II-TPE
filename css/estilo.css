@@ -1,0 +1,14 @@
+body {
+    background-color: rgb(29, 28, 28);
+}
+.librosTabla {
+    width: 70%;
+    margin: 5px auto;
+    font-size: 21px;
+}
+.librosTabla td {
+    padding: 1% 1% 1% 0.5%;
+}
+.fecha_th {
+    width: 20%;
+}
