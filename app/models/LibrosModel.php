@@ -15,5 +15,13 @@ class LibrosModel {
 
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
+
+    function getLibro($id) {
+
+        $query = $this->db->prepare("SELECT l.*, a.nombre AS nombre_autor FROM libro l JOIN autor a ON l.id_autor = a.id WHERE l.id = ?");
+        $query->execute([$id]);
+
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
 }
 ?>

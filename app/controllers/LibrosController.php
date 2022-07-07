@@ -18,5 +18,17 @@ class LibrosController {
         $libros = $this->model->getLibros();
         $this->view->showHome($libros);
     }
+
+    function showLibro($params = null) {
+
+        $id = $params[":ID"];
+        $libro = $this->model->getLibro($id);
+        
+        if ($libro) {
+            $this->view->showLibro($libro);
+        } else {
+            $this->view->showLibro(null);
+        }
+    }
 }
 ?>

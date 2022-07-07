@@ -18,5 +18,13 @@ class LibrosView {
 
         $this->smarty->display("templates/librosTabla.tpl");
     }
+
+    function showLibro($libro) {
+
+        $this->smarty->assign("titulo", "LibroInfo");
+        $this->smarty->assign("libro", $libro);
+
+        $this->smarty->display("templates/libro.tpl");
+    }
 }
 ?>

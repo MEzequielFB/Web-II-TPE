@@ -7,6 +7,7 @@ $r = new Router();
 
 //Libros
 $r->setDefaultRoute("LibrosController", "showHome");
+$r->addRoute("libros/:ID", "GET", "LibrosController", "showLibro");
 
 $r->Route($_GET["accion"], $_SERVER["REQUEST_METHOD"]);
 ?>
