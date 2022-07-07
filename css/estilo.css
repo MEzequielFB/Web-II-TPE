@@ -1,9 +1,20 @@
 body {
     background-color: rgb(29, 28, 28);
 }
-.librosTabla {
+.navbar a {
+    font-size: 24px;
+}
+#navbarLogo {
+    font-size: 30px;
+}
+h1 {
+    color: whitesmoke;
+    margin-left: 15%;
+}
+/*Libros tabla*/
+.librosTabla, .listaLibro {
     width: 70%;
-    margin: 5px auto;
+    margin: 10px auto;
     font-size: 21px;
 }
 .librosTabla td {
@@ -11,4 +22,7 @@ body {
 }
 .fecha_th {
     width: 20%;
+}
+.negrita {
+    font-weight: 800;
 }
