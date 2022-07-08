@@ -16,7 +16,7 @@ h1, .autoresTabla {
 /*Libros tabla*/
 .librosTabla, .listaLibro {
     width: 70%;
-    margin: 10px auto;
+    margin: 2% auto;
     font-size: 21px;
 }
 .librosTabla td {
@@ -35,3 +35,36 @@ h1, .autoresTabla {
 .negrita {
     font-weight: 800;
 }
+form {
+    width: 35%;
+    margin-left: 15%;
+    margin-top: 1%;
+}
+form .labelForm {
+    color: antiquewhite;
+    font-size: 24px;
+}
+.hide {
+    display: none;
+}
+form #autorSelect {
+    margin-top: 1%;
+}
+form .alertaSelect {    
+    width: 23%;
+    padding: 1%;
+    margin-top: 0.3%;    
+    text-align: center;    
+}
+/*form label, form select, form #fechaInput {
+    display: block;
+}
+form select, form #fechaInput {
+    height: 28px;
+    margin: 0% 1%;
+}
+form .autorFechaDiv {
+    display: flex;
+    align-items: center;
+    margin: 1% 0%;
+}*/

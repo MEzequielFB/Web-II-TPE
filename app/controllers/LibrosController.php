@@ -2,6 +2,8 @@
 require_once "app/models/LibrosModel.php";
 require_once "app/views/LibrosView.php";
 
+require_once "app/models/AutoresModel.php";
+
 class LibrosController {
 
     private $model;
@@ -15,8 +17,11 @@ class LibrosController {
 
     function showHome() {
 
+        $autoresModel = new AutoresModel();
+        $autores = $autoresModel->getAutores();
+
         $libros = $this->model->getLibros();
-        $this->view->showHome($libros);
+        $this->view->showHome($libros, $autores);
     }
 
     function showLibro($params = null) {

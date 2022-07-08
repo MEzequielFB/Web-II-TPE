@@ -11,10 +11,12 @@ class LibrosView {
         $this->smarty->assign("base_url", BASE_URL);
     }
 
-    function showHome($libros) {
+    function showHome($libros, $autores) {
 
         $this->smarty->assign("titulo", "Home");
         $this->smarty->assign("libros", $libros);
+        $this->smarty->assign("autores", $autores);
+        $this->smarty->assign("selectForm", true); //Una variable que si es declarada se añade un tag script al head de la página        
 
         $this->smarty->display("templates/libros.tpl");
     }
