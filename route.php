@@ -12,6 +12,7 @@ $r->addRoute("libros/:ID", "GET", "LibrosController", "showLibro");
 
 //Autores
 $r->addRoute("autores", "GET", "AutoresController", "showAutores");
+$r->addRoute("autores/:ID/libros", "GET", "AutoresController", "showAutorLibros");
 
 $r->Route($_GET["accion"], $_SERVER["REQUEST_METHOD"]);
 ?>

@@ -15,5 +15,13 @@ class AutoresModel {
 
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
+
+    function getAutor($id) {
+
+        $query = $this->db->prepare("SELECT * FROM autor WHERE id = ?");
+        $query->execute([$id]);
+
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
 }
 ?>
