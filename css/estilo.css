@@ -8,7 +8,9 @@ body {
     font-size: 30px;
 }
 h1 {
-    color: whitesmoke;
+    color: whitesmoke;    
+}
+h1, .autoresTabla {
     margin-left: 15%;
 }
 /*Libros tabla*/
@@ -22,6 +24,13 @@ h1 {
 }
 .fecha_th {
     width: 20%;
+}
+.autoresTabla {
+    width: 22%;
+    font-size: 26px;
+}
+.autoresTabla td {
+    padding: 2%;
 }
 .negrita {
     font-weight: 800;
