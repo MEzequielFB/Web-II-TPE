@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-07-2022 a las 22:44:14
+-- Tiempo de generación: 08-07-2022 a las 20:19:30
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -50,7 +50,7 @@ INSERT INTO `autor` (`id`, `nombre`) VALUES
 CREATE TABLE `libro` (
   `id` int(11) NOT NULL,
   `titulo` varchar(40) NOT NULL,
-  `autor` int(11) NOT NULL,
+  `id_autor` int(11) NOT NULL,
   `genero` varchar(20) NOT NULL,
   `fecha_publicacion` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -59,7 +59,7 @@ CREATE TABLE `libro` (
 -- Volcado de datos para la tabla `libro`
 --
 
-INSERT INTO `libro` (`id`, `titulo`, `autor`, `genero`, `fecha_publicacion`) VALUES
+INSERT INTO `libro` (`id`, `titulo`, `id_autor`, `genero`, `fecha_publicacion`) VALUES
 (1, 'El gato negro', 1, 'Terror', '1843-08-19'),
 (2, 'El cuervo', 1, 'Drama', '1845-01-29'),
 (3, 'El hobbit', 3, 'Fantasía heroíca', '1937-09-21');
@@ -79,7 +79,7 @@ ALTER TABLE `autor`
 --
 ALTER TABLE `libro`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `FK_AUTOR_ID` (`autor`);
+  ADD KEY `FK_AUTOR_ID` (`id_autor`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -105,7 +105,7 @@ ALTER TABLE `libro`
 -- Filtros para la tabla `libro`
 --
 ALTER TABLE `libro`
-  ADD CONSTRAINT `libro_ibfk_1` FOREIGN KEY (`autor`) REFERENCES `autor` (`id`);
+  ADD CONSTRAINT `libro_ibfk_1` FOREIGN KEY (`id_autor`) REFERENCES `autor` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
