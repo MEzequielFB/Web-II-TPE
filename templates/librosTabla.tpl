@@ -1,8 +1,3 @@
-{include file="head.tpl"}
-{include file="navbar.tpl"}
-
-<h1>Libros</h1>
-
 <table class="table table-dark table-hover librosTabla">
     <thead>
         <tr>
@@ -23,5 +18,3 @@
         {/foreach}
     </tbody>
 </table>
-
-{include file="footer.tpl"}
