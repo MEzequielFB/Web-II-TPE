@@ -35,5 +35,23 @@ class LibrosController {
             $this->view->showLibro(null);
         }
     }
+
+    function addLibro() {
+
+        if (isset($_POST["tituloInput"]) && isset($_POST["generoInput"]) && isset($_POST["autorSelect"]) && isset($_POST["fechaInput"])) {
+
+            $titulo = $_POST["tituloInput"];
+            $autor = intval($_POST["autorSelect"]);
+            $genero = $_POST["generoInput"];            
+            $fecha = $_POST["fechaInput"];
+
+            $id = $this->model->insertLibro($titulo, $autor, $genero, $fecha);
+            if ($this->model->getLibro($id)) {
+                header("Location: ".BASE_URL);
+            } else {
+                $this->view->showError("No se pudo ingresar el nuevo libro");
+            }
+        }        
+    }
 }
 ?>

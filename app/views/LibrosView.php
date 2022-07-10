@@ -27,5 +27,12 @@ class LibrosView {
 
         $this->smarty->display("templates/libro.tpl");
     }
+
+    function showError($mensaje) {
+
+        $this->smarty->assign("titulo", $mensaje);
+        
+        $this->smarty->display("templates/error.tpl");
+    }
 }
 ?>
