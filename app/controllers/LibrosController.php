@@ -47,11 +47,25 @@ class LibrosController {
 
             $id = $this->model->insertLibro($titulo, $autor, $genero, $fecha);
             if ($this->model->getLibro($id)) {
+
                 header("Location: ".BASE_URL);
-            } else {
+            } else {                
                 $this->view->showError("No se pudo ingresar el nuevo libro");
             }
         }        
+    }
+
+    function deleteLibro($params = null) {
+
+        $id = $params[":ID"];
+        if ($this->model->getLibro($id)) {
+
+            $this->model->deleteLibro($id);
+            header("Location: ".BASE_URL);
+        } else {
+            $this->view->showError("El libro que se quiere eliminar no existe");
+        }
+        
     }
 }
 ?>

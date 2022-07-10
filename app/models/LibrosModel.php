@@ -39,5 +39,11 @@ class LibrosModel {
         
         return $this->db->lastInsertId();
     }
+
+    function deleteLibro($id) {
+
+        $query = $this->db->prepare("DELETE FROM libro WHERE id = ?");
+        $query->execute([$id]);        
+    }
 }
 ?>

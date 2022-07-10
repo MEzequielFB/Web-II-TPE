@@ -10,6 +10,7 @@ $r = new Router();
 $r->setDefaultRoute("LibrosController", "showHome");
 $r->addRoute("libros/:ID", "GET", "LibrosController", "showLibro");
 $r->addRoute("libros/add", "POST", "LibrosController", "addLibro");
+$r->addRoute("libros/delete/:ID", "GET", "LibrosController", "deleteLibro");
 
 //Autores
 $r->addRoute("autores", "GET", "AutoresController", "showAutores");

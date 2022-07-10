@@ -4,13 +4,13 @@
     {include file="headContent.tpl"}
 </head>
 <body>
-{include file="navbar.tpl"}
+<!--{include file="navbar.tpl"}-->
 
 <div class="errorDiv">
     <div class="alert alert-warning" role="alert">
-        {$mensaje}
+        {$titulo}
     </div>
-    <a href="{$base_url}"></a>
+    <a href="{$base_url}">Volver</a>
 </div>
 
 {include file="footer.tpl"}
