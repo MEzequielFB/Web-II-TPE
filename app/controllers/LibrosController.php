@@ -26,11 +26,14 @@ class LibrosController {
 
     function showLibro($params = null) {
 
+        $autoresModel = new AutoresModel();
+        $autores = $autoresModel->getAutores();
+
         $id = $params[":ID"];
         $libro = $this->model->getLibro($id);
         
         if ($libro) {
-            $this->view->showLibro($libro);
+            $this->view->showLibro($libro, $autores);
         } else {
             $this->view->showLibro(null);
         }
@@ -64,8 +67,27 @@ class LibrosController {
             header("Location: ".BASE_URL);
         } else {
             $this->view->showError("El libro que se quiere eliminar no existe");
-        }
-        
+        }        
+    }
+
+    function editLibro($params = null) {        
+
+        if (isset($_POST["tituloInput"]) && isset($_POST["generoInput"]) && isset($_POST["autorSelect"]) && isset($_POST["fechaInput"])) {
+
+            $titulo = $_POST["tituloInput"];
+            $autor = intval($_POST["autorSelect"]);
+            $genero = $_POST["generoInput"];            
+            $fecha = $_POST["fechaInput"];
+
+            $id = $params[":ID"];
+            if ($this->model->getLibro($id)) {
+
+                $this->model->editLibro($titulo, $autor, $genero, $fecha, $id);
+                header("Location: ".BASE_URL);
+            } else {
+                $this->view->showError("El libro que se quiere editar no existe");
+            }
+        }        
     }
 }
 ?>

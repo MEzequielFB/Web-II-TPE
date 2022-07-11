@@ -11,6 +11,7 @@ $r->setDefaultRoute("LibrosController", "showHome");
 $r->addRoute("libros/:ID", "GET", "LibrosController", "showLibro");
 $r->addRoute("libros/add", "POST", "LibrosController", "addLibro");
 $r->addRoute("libros/delete/:ID", "GET", "LibrosController", "deleteLibro");
+$r->addRoute("libros/edit/:ID", "POST", "LibrosController", "editLibro");
 
 //Autores
 $r->addRoute("autores", "GET", "AutoresController", "showAutores");

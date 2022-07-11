@@ -45,5 +45,11 @@ class LibrosModel {
         $query = $this->db->prepare("DELETE FROM libro WHERE id = ?");
         $query->execute([$id]);        
     }
+
+    function editLibro($titulo, $autor, $genero, $fecha, $id) {
+
+        $query = $this->db->prepare("UPDATE libro SET titulo = ?, id_autor = ?, genero = ?, fecha_publicacion = ? WHERE id = ?");
+        $query->execute([$titulo, $autor, $genero, $fecha, $id]);        
+    }
 }
 ?>

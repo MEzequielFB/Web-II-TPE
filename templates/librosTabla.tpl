@@ -15,7 +15,10 @@
                 <td>{$libro->genero}</td>
                 <td><a href="autores/{$libro->id_autor}/libros">{$libro->nombre_autor}</a></td>
                 <td>{$libro->fecha_publicacion}</td>
-                <td><a href="libros/delete/{$libro->id}"><img src="img/delete.png"></a></td>
+                <td>
+                    <a href="libros/delete/{$libro->id}"><img src="img/delete.png"></a>
+                    <!--<a href="libros/edit/{$libro->id}"><img src="img/editar.png"></a>-->
+                </td>
             </tr>            
         {/foreach}
     </tbody>

@@ -26,11 +26,12 @@ h1, .autoresTabla {
     width: 20%;
 }
 table .botones_th {
-    width: 13%;
+    width: 10%;
 }
 table img {
     width: 30%;
     margin-top: 2%;
+    margin-left: 12%;
 }
 .autoresTabla {
     width: 22%;
