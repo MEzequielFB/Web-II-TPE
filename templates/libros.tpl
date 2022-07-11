@@ -37,6 +37,5 @@
 
     <button class="btn btn-outline-secondary" id="button-addon1">Agregar libro</button>
 </form>
-<!--{include file="libroForm.tpl"}-->
 
 {include file="footer.tpl"}

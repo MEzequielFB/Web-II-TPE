@@ -4,7 +4,6 @@
     {include file="headContent.tpl"}
 </head>
 <body>
-<!--{include file="navbar.tpl"}-->
 
 <div class="errorDiv">
     <div class="alert alert-warning" role="alert">

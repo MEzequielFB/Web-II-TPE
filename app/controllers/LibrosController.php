@@ -35,7 +35,7 @@ class LibrosController {
         if ($libro) {
             $this->view->showLibro($libro, $autores);
         } else {
-            $this->view->showLibro(null);
+            $this->view->showError("El libro al que se quiere acceder no existe");
         }
     }
 
