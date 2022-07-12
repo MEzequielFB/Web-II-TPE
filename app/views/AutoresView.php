@@ -19,6 +19,14 @@ class AutoresView {
         $this->smarty->display("templates/autores.tpl");
     }
 
+    function showAutor($autor) {
+
+        $this->smarty->assign("titulo", $autor->nombre);
+        $this->smarty->assign("autor", $autor);
+
+        $this->smarty->display("templates/autor.tpl");
+    }
+
     function showAutorLibros($autor, $libros) {
 
         $this->smarty->assign("titulo", "Libros de $autor->nombre");

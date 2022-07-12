@@ -37,5 +37,11 @@ class AutoresModel {
         $query = $this->db->prepare("DELETE FROM autor WHERE id = ?");
         $query->execute([$id]);        
     }
+
+    function editAutor($nombre, $id) {
+
+        $query = $this->db->prepare("UPDATE autor SET nombre = ? WHERE id = ?");
+        $query->execute([$nombre, $id]);        
+    }
 }
 ?>

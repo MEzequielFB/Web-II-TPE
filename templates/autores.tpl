@@ -2,12 +2,15 @@
 <html lang="en">
 <head>
     {include file="headContent.tpl"}
+    <script src="{$base_url}js/selectValidation.js"></script>
 </head>
 <body>
 {include file="navbar.tpl"}
 
 <h1>{$titulo}</h1>
 {include file="autoresTabla.tpl"}
+
+<h1>Añadir un autor:</h1>
 
 <form action="autores/add" method="post" class="addAutorForm">
     <div class="form-floating mb-3">

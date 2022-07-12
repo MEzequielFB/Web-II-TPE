@@ -14,7 +14,7 @@ h1, .autoresTabla {
     margin-left: 15%;
 }
 /*Libros tabla*/
-.librosTabla, .listaLibro {
+.librosTabla, .listaLibro, .listaAutor {
     width: 70%;
     margin: 2% auto;
     font-size: 21px;
@@ -34,17 +34,20 @@ table img {
     margin-left: 12%;
 }
 .autoresTabla {
-    width: 22%;
+    width: 25%;
     font-size: 26px;
 }
 .autoresTabla td {
     padding: 2%;
 }
-.autoresTabla .deleteBtnTd {
+.autoresTabla .deleteBtnTd, .autoresTabla .seeBtnTd {
     width: 19%;
 }
 .autoresTabla img {
     width: 65%;
+}
+form .autorEditSubmit {
+    margin-top: 1%;
 }
 .negrita {
     font-weight: 800;

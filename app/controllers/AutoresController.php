@@ -65,5 +65,35 @@ class AutoresController {
             $this->view->showError("El autor que se quiere eliminar no existe");
         }
     }
+
+    function showAutor($params = null) {
+
+        $id = $params[":ID"];
+        $autor = $this->model->getAutor($id);
+
+        if ($autor) {
+            $this->view->showAutor($autor);
+        } else {
+            $this->view->showError("El autor al que se quiere ingresar no existe");
+        }
+    }
+
+    function editAutor($params = null) {
+
+        if (isset($_POST["autorEditInput"])) {
+
+            $id = $params[":ID"];
+            $nombre = $_POST["autorEditInput"];
+            $autor = $this->model->getAutor($id);
+
+            if ($autor) {
+
+                $this->model->editAutor($nombre, $id);
+                header("Location: ".BASE_URL."autores");
+            } else {
+                $this->view->showError("El autor que se quiere editar no existe");
+            }
+        }
+    }
 }
 ?>
