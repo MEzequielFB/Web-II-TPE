@@ -40,6 +40,12 @@ table img {
 .autoresTabla td {
     padding: 2%;
 }
+.autoresTabla .deleteBtnTd {
+    width: 19%;
+}
+.autoresTabla img {
+    width: 65%;
+}
 .negrita {
     font-weight: 800;
 }

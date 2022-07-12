@@ -17,7 +17,6 @@
                 <td>{$libro->fecha_publicacion}</td>
                 <td>
                     <a href="libros/delete/{$libro->id}"><img src="img/delete.png"></a>
-                    <!--<a href="libros/edit/{$libro->id}"><img src="img/editar.png"></a>-->
                 </td>
             </tr>            
         {/foreach}

@@ -31,5 +31,11 @@ class AutoresModel {
         
         return $this->db->lastInsertId();
     }
+
+    function deleteAutor($id) {
+
+        $query = $this->db->prepare("DELETE FROM autor WHERE id = ?");
+        $query->execute([$id]);        
+    }
 }
 ?>

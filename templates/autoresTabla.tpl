@@ -2,12 +2,14 @@
     <thead>
         <tr>
             <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
         {foreach from=$autores item=$autor}
             <tr>
-                <td><a href="autores/{$autor->id}/libros">{$autor->nombre}</a></td>
+                <td class="autorTd"><a href="autores/{$autor->id}/libros">{$autor->nombre}</a></td>
+                <td class="deleteBtnTd"><a href="autores/delete/{$autor->id}"><img src="img/delete.png"></a></td>
             </tr>
         {/foreach}
     </tbody>

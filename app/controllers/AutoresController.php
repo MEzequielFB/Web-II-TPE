@@ -51,5 +51,19 @@ class AutoresController {
             }
         }
     }
+    
+    function deleteAutor($params = null) {
+
+        $id = $params[":ID"];
+        $autor = $this->model->getAutor($id);
+
+        if ($autor) {
+
+            $this->model->deleteAutor($id);
+            header("Location: ".BASE_URL."autores");
+        } else {
+            $this->view->showError("El autor que se quiere eliminar no existe");
+        }
+    }
 }
 ?>
