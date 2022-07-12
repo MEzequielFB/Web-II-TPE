@@ -16,6 +16,7 @@ $r->addRoute("libros/edit/:ID", "POST", "LibrosController", "editLibro");
 //Autores
 $r->addRoute("autores", "GET", "AutoresController", "showAutores");
 $r->addRoute("autores/:ID/libros", "GET", "AutoresController", "showAutorLibros");
+$r->addRoute("autores/add", "POST", "AutoresController", "addAutor");
 
 $r->Route($_GET["accion"], $_SERVER["REQUEST_METHOD"]);
 ?>

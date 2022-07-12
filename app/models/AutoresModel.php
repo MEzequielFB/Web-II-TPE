@@ -23,5 +23,13 @@ class AutoresModel {
 
         return $query->fetch(PDO::FETCH_OBJ);
     }
+
+    function insertAutor($nombre) {
+
+        $query = $this->db->prepare("INSERT INTO autor(nombre) VALUES(?)");
+        $query->execute([$nombre]);
+        
+        return $this->db->lastInsertId();
+    }
 }
 ?>

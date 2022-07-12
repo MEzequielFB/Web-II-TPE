@@ -9,7 +9,7 @@
     <div class="alert alert-warning" role="alert">
         {$titulo}
     </div>
-    <a href="{$base_url}">Volver</a>
+    <a href="{$urlRetorno}">Volver</a>
 </div>
 
 {include file="footer.tpl"}

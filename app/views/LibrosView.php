@@ -32,6 +32,7 @@ class LibrosView {
     function showError($mensaje) {
 
         $this->smarty->assign("titulo", $mensaje);
+        $this->smarty->assign("urlRetorno", BASE_URL);
         
         $this->smarty->display("templates/error.tpl");
     }

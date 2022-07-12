@@ -27,5 +27,13 @@ class AutoresView {
 
         $this->smarty->display("templates/autorLibros.tpl");
     }
+
+    function showError($mensaje) {
+
+        $this->smarty->assign("titulo", $mensaje);
+        $this->smarty->assign("urlRetorno", "autores");
+
+        $this->smarty->display("templates/error.tpl");
+    }
 }
 ?>
