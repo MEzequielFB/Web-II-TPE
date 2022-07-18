@@ -9,10 +9,15 @@ class LibrosController {
     private $model;
     private $view;
 
+    private $authHelper;
+
     function __construct() {
 
         $this->model = new LibrosModel();
         $this->view = new LibrosView();
+
+        $this->authHelper = new AuthHelper();
+        $this->authHelper->checkLog();
     }
 
     function showHome() {

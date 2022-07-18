@@ -85,6 +85,19 @@ form .alertaSelect {
     text-decoration: none;
     font-weight: bold;
 }
+.loginForm {
+    margin: 2% auto;
+    width: 30%;
+    text-align: center;
+    background-color: rgb(48, 46, 46);
+    border-radius: 5px;
+    padding: 1%;
+}
+.loginForm input {
+    width: 50%;
+    margin-left: 25%;
+    margin-bottom: 6%;
+}
 /*form label, form select, form #fechaInput {
     display: block;
 }

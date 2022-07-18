@@ -2,6 +2,7 @@
 require_once "Router.php";
 require_once "app/controllers/LibrosController.php";
 require_once "app/controllers/AutoresController.php";
+require_once "app/controllers/UsuariosController.php";
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
 $r = new Router();
@@ -20,6 +21,10 @@ $r->addRoute("autores/:ID/libros", "GET", "AutoresController", "showAutorLibros"
 $r->addRoute("autores/add", "POST", "AutoresController", "addAutor");
 $r->addRoute("autores/delete/:ID", "GET", "AutoresController", "deleteAutor");
 $r->addRoute("autores/edit/:ID", "POST", "AutoresController", "editAutor");
+
+//Login
+$r->addRoute("login", "GET", "UsuariosController", "showLogin");
+$r->addRoute("login/verify", "POST", "UsuariosController", "verifyUser");
 
 $r->Route($_GET["accion"], $_SERVER["REQUEST_METHOD"]);
 ?>

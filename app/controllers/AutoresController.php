@@ -9,10 +9,15 @@ class AutoresController {
     private $model;
     private $view;
     
+    private $authHelper;
+
     function __construct() {
 
         $this->model = new AutoresModel();
         $this->view = new AutoresView();
+
+        $this->authHelper = new AuthHelper();
+        $this->authHelper->checkLog();
     }
 
     function showAutores() {
