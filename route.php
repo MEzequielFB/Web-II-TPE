@@ -25,6 +25,7 @@ $r->addRoute("autores/edit/:ID", "POST", "AutoresController", "editAutor");
 //Login
 $r->addRoute("login", "GET", "UsuariosController", "showLogin");
 $r->addRoute("login/verify", "POST", "UsuariosController", "verifyUser");
+$r->addRoute("logout", "GET", "UsuariosController", "logout");
 
 $r->Route($_GET["accion"], $_SERVER["REQUEST_METHOD"]);
 ?>

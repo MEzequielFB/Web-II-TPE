@@ -22,7 +22,21 @@ class AuthHelper {
         if (!isset($_SESSION["USUARIO"])) {
 
             header("Location: ".BASE_URL."login");
-        }        
+        }
+    }
+
+    function getUsuarioNombre() {
+
+        if (isset($_SESSION["USUARIO"])) {
+            return $_SESSION["USUARIO"];
+        }
+    }
+
+    function getUsuarioRol() {
+
+        if (isset($_SESSION["USUARIO"])) {
+            return $_SESSION["ROL"];
+        }
     }
 }
 ?>

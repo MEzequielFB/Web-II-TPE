@@ -13,11 +13,11 @@ class AutoresController {
 
     function __construct() {
 
-        $this->model = new AutoresModel();
-        $this->view = new AutoresView();
-
         $this->authHelper = new AuthHelper();
         $this->authHelper->checkLog();
+
+        $this->model = new AutoresModel();
+        $this->view = new AutoresView($this->authHelper->getUsuarioNombre(), $this->authHelper->getUsuarioRol());        
     }
 
     function showAutores() {

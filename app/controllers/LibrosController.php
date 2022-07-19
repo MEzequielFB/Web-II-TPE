@@ -13,11 +13,11 @@ class LibrosController {
 
     function __construct() {
 
-        $this->model = new LibrosModel();
-        $this->view = new LibrosView();
-
         $this->authHelper = new AuthHelper();
         $this->authHelper->checkLog();
+
+        $this->model = new LibrosModel();
+        $this->view = new LibrosView($this->authHelper->getUsuarioNombre(), $this->authHelper->getUsuarioRol());
     }
 
     function showHome() {

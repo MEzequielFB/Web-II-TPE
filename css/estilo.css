@@ -7,6 +7,12 @@ body {
 #navbarLogo {
     font-size: 30px;
 }
+.opcionesNavbar {
+    margin: 0.19% 1% 0% 0%;
+}
+.opcionesMenu li a {
+    font-size: 16px;
+}
 h1 {
     color: whitesmoke;    
 }

@@ -5,10 +5,13 @@ class AutoresView {
 
     private $smarty;
 
-    function __construct() {
+    function __construct($nombreUsuario, $rolUsuario) {
 
         $this->smarty = new Smarty();
         $this->smarty->assign("base_url", BASE_URL);
+
+        $this->smarty->assign("nombreUsuario", $nombreUsuario);
+        $this->smarty->assign("rolUsuario", $rolUsuario);
     }
 
     function showAutores($autores) {

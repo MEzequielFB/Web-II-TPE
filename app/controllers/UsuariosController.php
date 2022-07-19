@@ -34,11 +34,15 @@ class UsuariosController {
 
                 $this->authHelper->login($usuario->id, $usuario->nombre, $usuario->rol);
                 header("Location: ".BASE_URL);
-            } else {
-                
+            } else {                
                 $this->view->showLogin("Usuario o contraseña incorrectos");
             }
         }
+    }
+
+    function logout() {
+        $this->authHelper->logout();
+        header("Location: ".BASE_URL."login");
     }
 }
 ?>
