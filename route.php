@@ -29,5 +29,9 @@ $r->addRoute("logout", "GET", "UsuariosController", "logout");
 $r->addRoute("registro", "GET", "UsuariosController", "showRegistro");
 $r->addRoute("registro/verify", "POST", "UsuariosController", "registrarUsuario");
 
+//Gestión de usuarios
+$r->addRoute("usuarios", "GET", "UsuariosController", "showUsuarios");
+$r->addRoute("usuarios/:ID/permisos", "GET", "UsuariosController", "editPermisos");
+
 $r->Route($_GET["accion"], $_SERVER["REQUEST_METHOD"]);
 ?>

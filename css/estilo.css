@@ -16,7 +16,7 @@ body {
 h1 {
     color: whitesmoke;    
 }
-h1, .autoresTabla {
+h1, .autoresTabla, .usuariosTabla {
     margin-left: 15%;
 }
 table a {
@@ -42,9 +42,11 @@ table img {
     margin-top: 2%;
     margin-left: 12%;
 }
-.autoresTabla {
-    width: 25%;
+.autoresTabla, .usuariosTabla {
     font-size: 26px;
+}
+.autoresTabla {
+    width: 25%;    
 }
 .autoresTabla td {
     padding: 2%;
@@ -116,15 +118,13 @@ form .alertaSelect {
 .loginForm .registroLink, .registroForm .loginLink {
     margin-left: 20%;
 }
-/*form label, form select, form #fechaInput {
-    display: block;
+.usuariosTabla {
+    width: 50%;
 }
-form select, form #fechaInput {
-    height: 28px;
-    margin: 0% 1%;
+.usuariosTabla td {
+    width: 25%;    
 }
-form .autorFechaDiv {
-    display: flex;
-    align-items: center;
-    margin: 1% 0%;
-}*/
+.usuariosTabla .permisosTh, .usuariosTabla .permisosTd {
+    width: 8%;
+    text-align: center;
+}

@@ -15,7 +15,7 @@ class UsuariosController {
         $this->model = new UsuariosModel();
         $this->view = new UsuariosView();
 
-        $this->authHelper = new AuthHelper();
+        $this->authHelper = new AuthHelper();        
     }
 
     function showLogin() {
@@ -79,6 +79,47 @@ class UsuariosController {
             } else {
                 $this->view->showRegistro("El nombre de usuario ingresado ya existe");
             }
+        }
+    }
+
+    function showUsuarios() {
+
+        if ($this->authHelper->getUsuarioRol() == 1) {
+
+            $usuarios = $this->model->getUsuarios();
+            foreach ($usuarios as $usuario) {
+                if ($usuario->rol == 1) {
+                    $usuario->rol = "Administrador";
+                } else {
+                    $usuario->rol = "Usuario";
+                }
+            }
+            $this->view->showUsuarios($usuarios, $this->authHelper->getUsuarioNombre(), $this->authHelper->getUsuarioRol());
+        } else {
+            header("Location: ".BASE_URL);
+        }
+    }
+
+    function editPermisos($params = null) {
+
+        if ($this->authHelper->getUsuarioRol() == 1) {
+
+            $id = $params[":ID"];
+            $usuario = $this->model->getUsuario($id);
+
+            if ($usuario && $usuario->nombre != $this->authHelper->getUsuarioNombre()) {
+                
+                if ($usuario->rol == 1) {
+                    $this->model->editPermisos(0, $id);
+                } else {
+                    $this->model->editPermisos(1, $id);
+                }
+                header("Location: ".BASE_URL."usuarios");
+            } else {
+                $this->view->showError("El usuario al que se quiere acceder no existe o no es modificable");
+            }
+        } else {
+            header("Location: ".BASE_URL);
         }
     }
 }

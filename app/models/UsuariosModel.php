@@ -31,5 +31,19 @@ class UsuariosModel {
 
         return $this->db->lastInsertId();
     }
+
+    function getUsuarios() {
+
+        $query = $this->db->prepare("SELECT * FROM usuario");
+        $query->execute();
+
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    function editPermisos($rol, $id) {
+
+        $query = $this->db->prepare("UPDATE usuario SET rol = ? WHERE id = ?");
+        $query->execute([$rol, $id]);
+    }
 }
 ?>

@@ -21,7 +21,7 @@
       <ul class="dropdown-menu opcionesMenu">
         <li><a class="dropdown-item" href="#">Editar perfil</a></li>
         {if $rolUsuario}
-          <li><a class="dropdown-item" href="#">Gestionar usuarios</a></li>
+          <li><a class="dropdown-item" href="usuarios">Gestionar usuarios</a></li>
         {/if}        
         <li><a class="dropdown-item" href="#">Link</a></li>
       </ul>
