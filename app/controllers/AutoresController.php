@@ -54,20 +54,27 @@ class AutoresController {
             } else {
                 $this->view->showError("No se pudo insertar el autor");
             }
+        } else {
+            header("Location: ".BASE_URL);
         }
     }
     
     function deleteAutor($params = null) {
 
-        $id = $params[":ID"];
-        $autor = $this->model->getAutor($id);
+        if ($this->authHelper->getUsuarioRol()) {
 
-        if ($autor) {
+            $id = $params[":ID"];
+            $autor = $this->model->getAutor($id);
 
-            $this->model->deleteAutor($id);
-            header("Location: ".BASE_URL."autores");
+            if ($autor) {
+
+                $this->model->deleteAutor($id);
+                header("Location: ".BASE_URL."autores");
+            } else {
+                $this->view->showError("El autor que se quiere eliminar no existe");
+            }
         } else {
-            $this->view->showError("El autor que se quiere eliminar no existe");
+            header("Location: ".BASE_URL);
         }
     }
 
@@ -98,6 +105,8 @@ class AutoresController {
             } else {
                 $this->view->showError("El autor que se quiere editar no existe");
             }
+        } else {
+            header("Location: ".BASE_URL);
         }
     }
 }

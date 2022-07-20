@@ -60,19 +60,26 @@ class LibrosController {
             } else {                
                 $this->view->showError("No se pudo ingresar el nuevo libro");
             }
-        }        
+        } else {
+            header("Location: ".BASE_URL);
+        }
     }
 
     function deleteLibro($params = null) {
 
-        $id = $params[":ID"];
-        if ($this->model->getLibro($id)) {
+        if ($this->authHelper->getUsuarioRol() == 1) {
 
-            $this->model->deleteLibro($id);
-            header("Location: ".BASE_URL);
+            $id = $params[":ID"];
+            if ($this->model->getLibro($id)) {
+
+                $this->model->deleteLibro($id);
+                header("Location: ".BASE_URL);
+            } else {
+                $this->view->showError("El libro que se quiere eliminar no existe");
+            }
         } else {
-            $this->view->showError("El libro que se quiere eliminar no existe");
-        }        
+            header("Location: ".BASE_URL);
+        }
     }
 
     function editLibro($params = null) {        
@@ -92,7 +99,9 @@ class LibrosController {
             } else {
                 $this->view->showError("El libro que se quiere editar no existe");
             }
-        }        
+        } else {
+            header("Location: ".BASE_URL);
+        }
     }
 }
 ?>
