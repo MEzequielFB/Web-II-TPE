@@ -22,10 +22,12 @@ $r->addRoute("autores/add", "POST", "AutoresController", "addAutor");
 $r->addRoute("autores/delete/:ID", "GET", "AutoresController", "deleteAutor");
 $r->addRoute("autores/edit/:ID", "POST", "AutoresController", "editAutor");
 
-//Login
+//Login y registro
 $r->addRoute("login", "GET", "UsuariosController", "showLogin");
 $r->addRoute("login/verify", "POST", "UsuariosController", "verifyUser");
 $r->addRoute("logout", "GET", "UsuariosController", "logout");
+$r->addRoute("registro", "GET", "UsuariosController", "showRegistro");
+$r->addRoute("registro/verify", "POST", "UsuariosController", "registrarUsuario");
 
 $r->Route($_GET["accion"], $_SERVER["REQUEST_METHOD"]);
 ?>

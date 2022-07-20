@@ -21,7 +21,10 @@
         <input type="password" class="form-control" id="passwordInput" name="passwordInput" minlength="6" maxlength="10" required>
     </div>
 
-    <button class="btn btn-outline-secondary">Iniciar sesión</button>
+    <div class="loginRegistroDiv">
+        <button class="btn btn-outline-secondary">Iniciar sesión</button>
+        <a href="registro" class="registroLink">¿No tenés cuenta?</a>
+    </div>    
 </form>
 
 {include file="footer.tpl"}

@@ -91,7 +91,7 @@ form .alertaSelect {
     text-decoration: none;
     font-weight: bold;
 }
-.loginForm {
+.loginForm, .registroForm {
     margin: 2% auto;
     width: 30%;
     text-align: center;
@@ -99,10 +99,19 @@ form .alertaSelect {
     border-radius: 5px;
     padding: 1%;
 }
-.loginForm input {
+.loginForm input, .registroForm input {
     width: 50%;
     margin-left: 25%;
     margin-bottom: 6%;
+}
+.loginForm .loginRegistroDiv {
+    margin-left: 38%;
+}
+.registroForm .loginRegistroDiv {
+    margin-left: 32%;
+}
+.loginForm .registroLink, .registroForm .loginLink {
+    margin-left: 20%;
 }
 /*form label, form select, form #fechaInput {
     display: block;

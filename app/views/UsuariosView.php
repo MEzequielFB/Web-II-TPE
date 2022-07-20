@@ -18,5 +18,13 @@ class UsuariosView {
 
         $this->smarty->display("templates/login.tpl");
     }
+
+    function showRegistro($errorMsj = null) {
+
+        $this->smarty->assign("titulo", "Registro");
+        $this->smarty->assign("errorMsj", $errorMsj);
+
+        $this->smarty->display("templates/registro.tpl");
+    }
 }
 ?>

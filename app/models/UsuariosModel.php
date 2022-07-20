@@ -8,12 +8,28 @@ class UsuariosModel {
         $this->db = new PDO('mysql:host=localhost;'.'dbname=db_libros;charset=utf8', 'root', '');        
     }
 
-    function getUsuario($nombre) {
+    function getUsuario($id) {
+
+        $query = $this->db->prepare("SELECT * FROM usuario WHERE id = ?");
+        $query->execute([$id]);
+
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
+
+    function getUsuarioByNombre($nombre) {
 
         $query = $this->db->prepare("SELECT * FROM usuario WHERE nombre LIKE CONCAT('%',?,'%')");
         $query->execute([$nombre]);
 
         return $query->fetch(PDO::FETCH_OBJ);
+    }
+
+    function insertUsuario($nombreUsuario, $passwordHash, $rol) {
+
+        $query = $this->db->prepare("INSERT INTO usuario(nombre, password, rol) VALUES(?,?,?)");
+        $query->execute([$nombreUsuario, $passwordHash, $rol]);        
+
+        return $this->db->lastInsertId();
     }
 }
 ?>

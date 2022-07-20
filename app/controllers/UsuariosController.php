@@ -29,8 +29,8 @@ class UsuariosController {
             $nombreUsuario = $_POST["nombreUsuarioInput"];
             $password = $_POST["passwordInput"];
 
-            $usuario = $this->model->getUsuario($nombreUsuario);
-            if ($usuario && $password == $usuario->password) {
+            $usuario = $this->model->getUsuarioByNombre($nombreUsuario);
+            if (password_verify($password, $usuario->password)) {
 
                 $this->authHelper->login($usuario->id, $usuario->nombre, $usuario->rol);
                 header("Location: ".BASE_URL);
@@ -43,6 +43,43 @@ class UsuariosController {
     function logout() {
         $this->authHelper->logout();
         header("Location: ".BASE_URL."login");
+    }
+
+    function showRegistro() {
+        $this->view->showRegistro();
+    }
+
+    function registrarUsuario() {
+
+        if (isset($_POST["nombreUsuarioInput"]) && isset($_POST["passwordInput"]) && isset($_POST["passwordRepeatInput"])) {
+
+            $nombreUsuario = $_POST["nombreUsuarioInput"];
+            $password = $_POST["passwordInput"];
+            $passwordR = $_POST["passwordRepeatInput"];
+
+            if (!$this->model->getUsuarioByNombre($nombreUsuario)) {
+
+                if ($password == $passwordR) {
+
+                    $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+                    $idUsuario = $this->model->insertUsuario($nombreUsuario, $passwordHash, 0);
+
+                    $usuario = $this->model->getUsuario($idUsuario);
+
+                    if ($usuario) {
+
+                        $this->authHelper->login($usuario->id, $usuario->nombre, $usuario->rol);
+                        header("Location: ".BASE_URL);
+                    } else {
+                        $this->view->showRegistro("No se pudo realizar el registro");
+                    }
+                } else {
+                    $this->view->showRegistro("Las contraseñas no coinciden");    
+                }
+            } else {
+                $this->view->showRegistro("El nombre de usuario ingresado ya existe");
+            }
+        }
     }
 }
 ?>
