@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-07-2022 a las 20:19:30
+-- Tiempo de generación: 20-07-2022 a las 21:51:13
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -39,7 +39,9 @@ CREATE TABLE `autor` (
 INSERT INTO `autor` (`id`, `nombre`) VALUES
 (1, 'Edgar Allan Poe'),
 (2, 'Stephen King'),
-(3, 'J.R.R. Tolkien');
+(3, 'J.R.R. Tolkien'),
+(4, 'Mariano Panzer'),
+(8, 'Emiliano Villas');
 
 -- --------------------------------------------------------
 
@@ -62,7 +64,30 @@ CREATE TABLE `libro` (
 INSERT INTO `libro` (`id`, `titulo`, `id_autor`, `genero`, `fecha_publicacion`) VALUES
 (1, 'El gato negro', 1, 'Terror', '1843-08-19'),
 (2, 'El cuervo', 1, 'Drama', '1845-01-29'),
-(3, 'El hobbit', 3, 'Fantasía heroíca', '1937-09-21');
+(3, 'El hobbit', 3, 'Fantasía heroíca', '1937-09-21'),
+(6, 'El resplandor', 2, 'Drama', '1977-01-28'),
+(9, 'Otro libro', 4, 'Misterio', '2022-07-02');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(45) NOT NULL,
+  `password` varchar(70) NOT NULL,
+  `rol` tinyint(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`id`, `nombre`, `password`, `rol`) VALUES
+(2, 'Usuario', '$2y$10$pYOaVCAAKPTSUc/XNeRuEOObUFqYC2DPwY0YvN/TNai6zkBM3ybf2', 0),
+(3, 'Admin', '$2y$10$g2hq1wzTmmgvuDJE/nbQe.dP1IjeuaZ.kg6DXG9IG/vLLCEMQcEm2', 1);
 
 --
 -- Índices para tablas volcadas
@@ -82,6 +107,12 @@ ALTER TABLE `libro`
   ADD KEY `FK_AUTOR_ID` (`id_autor`);
 
 --
+-- Indices de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -89,12 +120,18 @@ ALTER TABLE `libro`
 -- AUTO_INCREMENT de la tabla `autor`
 --
 ALTER TABLE `autor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `libro`
 --
 ALTER TABLE `libro`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT de la tabla `usuario`
+--
+ALTER TABLE `usuario`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
