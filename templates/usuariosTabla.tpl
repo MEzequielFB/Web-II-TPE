@@ -3,6 +3,7 @@
         <th>Nombre de usuario</th>
         <th>Permisos</th>
         <th class="permisosTh"></th>
+        <th></th>
     </thead>
     <tbody>
         {foreach from=$usuarios item=$usuario}
@@ -15,6 +16,7 @@
                     {else}
                         <td class="permisosTd"><a href="usuarios/{$usuario->id}/permisos"><button type="button" class="btn btn-secondary">Dar permisos</button></a></td>
                     {/if}
+                    <td class="deleteUserTd"><a href="usuarios/delete/{$usuario->id}"><img src="img/delete.png"></a></td>
                 </tr>
             {/if}            
         {/foreach}

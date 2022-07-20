@@ -32,6 +32,7 @@ $r->addRoute("registro/verify", "POST", "UsuariosController", "registrarUsuario"
 //Gestión de usuarios
 $r->addRoute("usuarios", "GET", "UsuariosController", "showUsuarios");
 $r->addRoute("usuarios/:ID/permisos", "GET", "UsuariosController", "editPermisos");
+$r->addRoute("usuarios/delete/:ID", "GET", "UsuariosController", "deleteUsuario");
 
 $r->Route($_GET["accion"], $_SERVER["REQUEST_METHOD"]);
 ?>

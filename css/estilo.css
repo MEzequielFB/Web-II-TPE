@@ -125,6 +125,15 @@ form .alertaSelect {
     width: 25%;    
 }
 .usuariosTabla .permisosTh, .usuariosTabla .permisosTd {
-    width: 8%;
+    width: 10%;
+}
+.usuariosTabla .permisosTh, .usuariosTabla .permisosTd, .usuariosTabla .deleteUserTd {
     text-align: center;
+}
+.usuariosTabla .deleteUserTd {
+    width: 5%;
+}
+.usuariosTabla .deleteUserTd img {
+    margin-left: 0px;
+    width: 81%;
 }

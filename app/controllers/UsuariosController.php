@@ -122,5 +122,24 @@ class UsuariosController {
             header("Location: ".BASE_URL);
         }
     }
+
+    function deleteUsuario($params = null) {
+
+        if ($this->authHelper->getUsuarioRol() == 1) {
+
+            $id = $params[":ID"];
+            $usuario = $this->model->getUsuario($id);
+
+            if ($usuario && $usuario->nombre != $this->authHelper->getUsuarioNombre()) {
+
+                $this->model->deleteUsuario($id);
+                header("Location: ".BASE_URL."usuarios");
+            } else {
+                $this->view->showError("El usuario al que se quiere acceder no existe o no es modificable");
+            }
+        } else {
+            header("Location: ".BASE_URL);
+        }
+    }
 }
 ?>
