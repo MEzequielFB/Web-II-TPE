@@ -5,7 +5,9 @@
             <th>Género</th>
             <th>Autor</th>
             <th class="fecha_th">Fecha de publicación</th>
-            <th class="botones_th"></th>
+            {if $rolUsuario eq 1}
+                <th class="botones_th"></th>
+            {/if}             
         </tr>
     </thead>
     <tbody>
@@ -15,9 +17,11 @@
                 <td>{$libro->genero}</td>
                 <td><a href="autores/{$libro->id_autor}/libros">{$libro->nombre_autor}</a></td>
                 <td>{$libro->fecha_publicacion}</td>
-                <td>
-                    <a href="libros/delete/{$libro->id}"><img src="img/delete.png"></a>
-                </td>
+                {if $rolUsuario eq 1}
+                    <td>
+                        <a href="libros/delete/{$libro->id}"><img src="img/delete.png"></a>
+                    </td>
+                {/if}                
             </tr>            
         {/foreach}
     </tbody>

@@ -37,7 +37,7 @@ class AutoresController {
             $libros = $librosModel->getLibrosByAutor($id);
             $this->view->showAutorLibros($autor, $libros);
         } else {
-            $this->view->showAutorLibros(null, null);
+            $this->view->showError("El autor al que se quiere ingresar no existe");
         }
     }
 
@@ -80,13 +80,18 @@ class AutoresController {
 
     function showAutor($params = null) {
 
-        $id = $params[":ID"];
-        $autor = $this->model->getAutor($id);
+        if ($this->authHelper->getUsuarioRol() == 1) {
 
-        if ($autor) {
-            $this->view->showAutor($autor);
+            $id = $params[":ID"];
+            $autor = $this->model->getAutor($id);
+
+            if ($autor) {
+                $this->view->showAutor($autor);
+            } else {
+                $this->view->showError("El autor al que se quiere ingresar no existe");
+            }
         } else {
-            $this->view->showError("El autor al que se quiere ingresar no existe");
+            header("Location: ".BASE_URL);
         }
     }
 

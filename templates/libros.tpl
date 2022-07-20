@@ -9,7 +9,7 @@
 
 <h1>Libros</h1>
 {include file="librosTabla.tpl"}
-<p>{$rolUsuario}</p>
+
 {if $rolUsuario eq 1}
 
     <h1>Añadir un libro</h1>
