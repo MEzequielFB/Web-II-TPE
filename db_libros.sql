@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-07-2022 a las 21:51:13
+-- Tiempo de generación: 22-07-2022 a las 02:29:49
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -42,6 +42,27 @@ INSERT INTO `autor` (`id`, `nombre`) VALUES
 (3, 'J.R.R. Tolkien'),
 (4, 'Mariano Panzer'),
 (8, 'Emiliano Villas');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `comentario`
+--
+
+CREATE TABLE `comentario` (
+  `id` int(11) NOT NULL,
+  `contenido` varchar(250) NOT NULL,
+  `puntuacion` tinyint(4) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `id_libro` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `comentario`
+--
+
+INSERT INTO `comentario` (`id`, `contenido`, `puntuacion`, `id_usuario`, `id_libro`) VALUES
+(1, 'Buen libro', 3, 4, 6);
 
 -- --------------------------------------------------------
 
@@ -86,8 +107,8 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `nombre`, `password`, `rol`) VALUES
-(2, 'Usuario', '$2y$10$pYOaVCAAKPTSUc/XNeRuEOObUFqYC2DPwY0YvN/TNai6zkBM3ybf2', 0),
-(3, 'Admin', '$2y$10$g2hq1wzTmmgvuDJE/nbQe.dP1IjeuaZ.kg6DXG9IG/vLLCEMQcEm2', 1);
+(3, 'Admin', '$2y$10$g2hq1wzTmmgvuDJE/nbQe.dP1IjeuaZ.kg6DXG9IG/vLLCEMQcEm2', 1),
+(4, 'UsuarioNuevo', '$2y$10$D6TeyBVcAAlJUTLfaFLicOJup.p3o6MRieV3xi8YP1924DhmQqO2O', 1);
 
 --
 -- Índices para tablas volcadas
@@ -98,6 +119,14 @@ INSERT INTO `usuario` (`id`, `nombre`, `password`, `rol`) VALUES
 --
 ALTER TABLE `autor`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `comentario`
+--
+ALTER TABLE `comentario`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FK_USUARIO_ID` (`id_usuario`),
+  ADD KEY `FK_LIBRO_ID` (`id_libro`);
 
 --
 -- Indices de la tabla `libro`
@@ -120,7 +149,13 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `autor`
 --
 ALTER TABLE `autor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT de la tabla `comentario`
+--
+ALTER TABLE `comentario`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `libro`
@@ -132,11 +167,18 @@ ALTER TABLE `libro`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `comentario`
+--
+ALTER TABLE `comentario`
+  ADD CONSTRAINT `comentario_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`),
+  ADD CONSTRAINT `comentario_ibfk_2` FOREIGN KEY (`id_libro`) REFERENCES `libro` (`id`);
 
 --
 -- Filtros para la tabla `libro`
