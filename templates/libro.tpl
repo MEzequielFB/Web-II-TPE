@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
     {include file="headContent.tpl"}
-    <script src="{$base_url}js/selectValidation.js"></script>
+    {if $rolUsuario eq 1}
+        <script src="{$base_url}js/selectValidation.js"></script>
+    {/if}
+    <script src="{$base_url}js/comentarios.js"></script>
 </head>
 <body>
 {include file="navbar.tpl"}
@@ -14,7 +17,10 @@
     <li class="list-group-item list-group-item-action list-group-item-dark"><span class="negrita">Género:</span> {$libro->genero}</li>
     <li class="list-group-item list-group-item-action list-group-item-dark"><span class="negrita">Autor:</span> {$libro->nombre_autor}</li>
     <li class="list-group-item list-group-item-action list-group-item-dark"><span class="negrita">Fecha de publicación:</span> {$libro->fecha_publicacion}</li>
-</ul>    
+</ul>
+
+<h1>Comentarios</h1>
+{include file="vue/comentarios.tpl"}
 
 {if $rolUsuario eq 1}
     <form action="libros/edit/{$libro->id}" method="post" class="editLibroForm">

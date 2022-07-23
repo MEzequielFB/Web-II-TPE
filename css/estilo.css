@@ -16,7 +16,7 @@ body {
 h1 {
     color: whitesmoke;    
 }
-h1, .autoresTabla, .usuariosTabla {
+h1, .autoresTabla, .usuariosTabla, .comentariosDiv {
     margin-left: 15%;
 }
 table a {
@@ -136,4 +136,34 @@ form .alertaSelect {
 .usuariosTabla .deleteUserTd img {
     margin-left: 0px;
     width: 81%;
+}
+.comentariosDiv {    
+    width: 70%;    
+    background-color: rgb(205, 209, 212);    
+}
+.comentariosDiv, .comentarioDiv {
+    padding: 1%;
+}
+.comentarioDiv {
+    position: relative;
+    width: 50%;
+    margin-top: 1%;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: rgb(156, 159, 161);
+}
+.comentarioDiv img {
+    position: absolute;
+    top: 13%;
+    right: 1%;
+    width: 5%;    
+    cursor: pointer;
+}
+.comentarioDiv .comentarioContenido {
+    display: flex;    
+}
+.comentarioDiv  p {
+    margin-bottom: 0px;
+    margin-left: 1%;
+    font-size: 1.4em;
 }

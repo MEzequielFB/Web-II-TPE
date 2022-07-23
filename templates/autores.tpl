@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
     {include file="headContent.tpl"}
-    <script src="{$base_url}js/selectValidation.js"></script>
+    {if $rolUsuario eq 1}
+        <script src="{$base_url}js/selectValidation.js"></script>
+    {/if}
 </head>
 <body>
 {include file="navbar.tpl"}
