@@ -24,5 +24,18 @@ class ComentariosApiController extends ApiController {
             $this->view->response("No existe el libro indicado (id = $id)", 404);
         }
     }
+
+    function addComentarioLibro() {
+
+        $data = $this->getData();
+
+        $id = $this->model->insertComentarioLibro($data->contenido, $data->puntuacion, $data->id_usuario, $data->id_libro);
+        $comentario = $this->model->getComentario($id);
+        if ($comentario) {
+            $this->view->response($comentario, 200);
+        } else {
+            $this->view->response("No se pudo insertar el comentario", 500);
+        }
+    }
 }
 ?>

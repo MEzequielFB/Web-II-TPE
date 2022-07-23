@@ -162,8 +162,16 @@ form .alertaSelect {
 .comentarioDiv .comentarioContenido {
     display: flex;    
 }
-.comentarioDiv  p {
+.comentarioDiv p {
     margin-bottom: 0px;
     margin-left: 1%;
     font-size: 1.4em;
+}
+.comentarioForm #comentarioSelect {
+    display: inline;
+    width: 10%;
+}
+.comentarioForm .comentarioSelectLabel {
+    color: aliceblue;
+    font-size: 30px;
 }

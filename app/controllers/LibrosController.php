@@ -38,7 +38,7 @@ class LibrosController {
         $libro = $this->model->getLibro($id);
         
         if ($libro) {
-            $this->view->showLibro($libro, $autores);
+            $this->view->showLibro($libro, $autores, $this->authHelper->getUsuarioId());
         } else {
             $this->view->showError("El libro al que se quiere acceder no existe");
         }

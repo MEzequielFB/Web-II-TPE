@@ -5,6 +5,7 @@ require_once "api/ComentariosApiController.php";
 $r = new Router();
 
 $r->addRoute("comentarios/:ID", "GET", "ComentariosApiController", "showComentariosLibro");
+$r->addRoute("comentarios/", "POST", "ComentariosApiController", "addComentarioLibro");
 
 $r->Route($_GET["recurso"], $_SERVER["REQUEST_METHOD"]);
 ?>

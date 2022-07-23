@@ -38,5 +38,12 @@ class AuthHelper {
             return $_SESSION["ROL"];
         }
     }
+
+    function getUsuarioId() {
+
+        if (isset($_SESSION["USUARIO"])) {
+            return $_SESSION["ID"];
+        }
+    }
 }
 ?>

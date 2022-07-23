@@ -5,6 +5,7 @@
     {if $rolUsuario eq 1}
         <script src="{$base_url}js/selectValidation.js"></script>
     {/if}
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="{$base_url}js/comentarios.js"></script>
 </head>
 <body>
@@ -19,9 +20,7 @@
     <li class="list-group-item list-group-item-action list-group-item-dark"><span class="negrita">Fecha de publicación:</span> {$libro->fecha_publicacion}</li>
 </ul>
 
-<h1>Comentarios</h1>
-{include file="vue/comentarios.tpl"}
-
+<h1>Editar libro</h1>
 {if $rolUsuario eq 1}
     <form action="libros/edit/{$libro->id}" method="post" class="editLibroForm">
         <div class="form-floating mb-3">
@@ -55,5 +54,29 @@
         <button class="btn btn-outline-secondary" id="button-addon1">Editar libro</button>
     </form>
 {/if}
+
+<h1>Comentar</h1>
+<form action="" class="comentarioForm">
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" name="comentarioInput" id="comentarioInput" required placeholder="Comentario">
+        <label for="comentarioInput">Comentar</label>
+    </div>
+
+    <label for="comentarioSelect" class="comentarioSelectLabel">Puntuación:</label>
+    <select class="form-select" name="comentarioSelect" id="comentarioSelect" required aria-label="Default select example">        
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+
+    <input type="hidden" class="usuarioIdInput" value="{$idUsuario}">    
+
+    <button type="button" class="btn btn-outline-secondary" id="comentarioBtn">Comentar</button>
+</form>
+
+<h1>Comentarios</h1>
+{include file="vue/comentarios.tpl"}
 
 {include file="footer.tpl"}

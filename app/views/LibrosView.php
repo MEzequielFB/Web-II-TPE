@@ -23,11 +23,12 @@ class LibrosView {
         $this->smarty->display("templates/libros.tpl");
     }
 
-    function showLibro($libro, $autores) {
+    function showLibro($libro, $autores, $idUsuario) {
 
         $this->smarty->assign("titulo", "$libro->titulo");
         $this->smarty->assign("libro", $libro);
         $this->smarty->assign("autores", $autores);
+        $this->smarty->assign("idUsuario", $idUsuario);
 
         $this->smarty->display("templates/libro.tpl");
     }
