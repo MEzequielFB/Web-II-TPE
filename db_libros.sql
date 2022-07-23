@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-07-2022 a las 02:29:49
+-- Tiempo de generación: 23-07-2022 a las 14:14:45
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -62,7 +62,10 @@ CREATE TABLE `comentario` (
 --
 
 INSERT INTO `comentario` (`id`, `contenido`, `puntuacion`, `id_usuario`, `id_libro`) VALUES
-(1, 'Buen libro', 3, 4, 6);
+(1, 'Buen libro', 3, 4, 6),
+(2, 'Concuerdo con el desconocido', 4, 3, 6),
+(3, 'Bastante meh', 2, 4, 1),
+(4, 'Ta bien', 3, 4, 2);
 
 -- --------------------------------------------------------
 
@@ -108,7 +111,7 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`id`, `nombre`, `password`, `rol`) VALUES
 (3, 'Admin', '$2y$10$g2hq1wzTmmgvuDJE/nbQe.dP1IjeuaZ.kg6DXG9IG/vLLCEMQcEm2', 1),
-(4, 'UsuarioNuevo', '$2y$10$D6TeyBVcAAlJUTLfaFLicOJup.p3o6MRieV3xi8YP1924DhmQqO2O', 1);
+(4, 'UsuarioNuevo', '$2y$10$D6TeyBVcAAlJUTLfaFLicOJup.p3o6MRieV3xi8YP1924DhmQqO2O', 0);
 
 --
 -- Índices para tablas volcadas
@@ -155,7 +158,7 @@ ALTER TABLE `autor`
 -- AUTO_INCREMENT de la tabla `comentario`
 --
 ALTER TABLE `comentario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `libro`
