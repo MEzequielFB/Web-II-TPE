@@ -22,18 +22,8 @@ document.addEventListener("DOMContentLoaded", function(){
 
                 let comentarios = await response.json();
                 app.comentarios = comentarios;
-
-                /*comentariosDiv.innerHTML = "";
-                for (let comentario of json) {
-
-                    comentariosDiv.innerHTML +=
-                    `<div class="comentarioDiv">
-                        <h4>${comentario.usuario}</h4>
-                        <p>${comentario.contenido}</p>
-                        <p>Puntuación: ${comentario.puntuacion}</p>
-                        <img src="img/delete.png">
-                    </div>`;
-                }*/
+                //Agrega comportamiento a los botones luego de un segundo (sin timeOut no da tiempo a cargar los comentarios)
+                setTimeout(darComportamientoBtns, 1000);
             } else {
                 console.log("No se pudo acceder a los comentarios");
             }
@@ -65,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
                 let json = await response.json();
                 console.log(json);
-                
+
                 showComentarios();
             } else {
                 console.log("No se pudo insertar el comentario");
@@ -73,6 +63,44 @@ document.addEventListener("DOMContentLoaded", function(){
         }
         catch(error) {
             console.log(error);
+        }
+    }
+
+    async function deleteComentario(id) {
+        
+        try {
+
+            let response = await fetch("api/comentarios/"+id, {
+                "method": "DELETE"
+            });
+            if (response.ok) {
+
+                let json = await response.json();
+                console.log(json);
+
+                showComentarios();
+            } else {
+                console.log("No se pudo eliminar el comentario");
+            }
+        }
+        catch(error) {
+            console.log(error);
+        }
+    }
+
+    async function darComportamientoBtns() {
+
+        let comentarioDeleteBtns = document.querySelectorAll(".comentarioDeleteBtn");
+        for (let btn of comentarioDeleteBtns) {
+
+            if (!btn.classList.contains("comportamientoON")) {
+
+                btn.classList.add("comportamientoON");
+                btn.addEventListener("click", function(){
+                    deleteComentario(btn.id);
+                });
+            }
+            
         }
     }
 

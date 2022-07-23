@@ -6,7 +6,11 @@
             <p>Puntuación: {{comentario.puntuacion}}</p>
         {/literal}
         {if $rolUsuario eq 1}
-            <img src="img/delete.png">
+             {literal}
+                <!--En el id se bindea el valor del id del comentario. Vue no permite esta sintaxis => id="{{comentario.id}}"-->
+                <!--El comentario está entre literales porque Smarty compila las llaves-->
+             {/literal}
+            <img src="img/delete.png" class="comentarioDeleteBtn" :id="comentario.id">
         {/if}        
     </div>    
 </div>

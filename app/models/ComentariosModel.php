@@ -31,5 +31,11 @@ class ComentariosModel {
 
         return $this->db->lastInsertId();
     }
+
+    function deleteComentario($id) {
+
+        $query = $this->db->prepare("DELETE FROM comentario WHERE id = ?");
+        $query->execute([$id]);
+    }
 }
 ?>

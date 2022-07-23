@@ -37,5 +37,19 @@ class ComentariosApiController extends ApiController {
             $this->view->response("No se pudo insertar el comentario", 500);
         }
     }
+
+    function removeComentario($params = null) {
+
+        $id = $params[":ID"];
+        $comentario = $this->model->getComentario($id);
+
+        if ($comentario) {
+
+            $this->model->deleteComentario($id);
+            $this->view->response($comentario, 200);
+        } else {
+            $this->view->response("No existe el comentario indicado (id = $id)", 404);
+        }
+    }
 }
 ?>
