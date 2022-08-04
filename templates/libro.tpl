@@ -25,7 +25,7 @@
 
 <h1>Editar libro</h1>
 {if $rolUsuario eq 1}
-    <form action="libros/edit/{$libro->id}" method="post" class="editLibroForm">
+    <form action="libros/edit/{$libro->id}" method="post" class="editLibroForm" enctype="multipart/form-data">
         <div class="form-floating mb-3">
             <input type="text" class="form-control" name="tituloInput" id="tituloInput" required placeholder="Título" value="{$libro->titulo}">
             <label for="tituloInput">Título</label>
@@ -53,6 +53,11 @@
 
         <label for="fechaInput" class="labelForm">Fecha de publicación: </label>
         <input type="date" name="fechaInput" id="fechaInput" value="{$libro->fecha_publicacion}" required>
+
+        <div class="input-group mb-3"> <!--Input adjuntar una imágen al libro-->
+            <label class="input-group-text" for="imagenInput">Imágen</label>
+            <input type="file" class="form-control" name="imagenInput" id="imagenInput">
+        </div>
 
         <button class="btn btn-outline-secondary" id="button-addon1">Editar libro</button>
     </form>

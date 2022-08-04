@@ -46,10 +46,10 @@ class LibrosModel {
         $query->execute([$id]);        
     }
 
-    function editLibro($titulo, $autor, $genero, $fecha, $id) {
+    function editLibro($titulo, $autor, $genero, $fecha, $id, $pathImg = null) { //Se pone el path siempre al final porque sino me da error de tokens
 
-        $query = $this->db->prepare("UPDATE libro SET titulo = ?, id_autor = ?, genero = ?, fecha_publicacion = ? WHERE id = ?");
-        $query->execute([$titulo, $autor, $genero, $fecha, $id]);        
+        $query = $this->db->prepare("UPDATE libro SET titulo = ?, id_autor = ?, genero = ?, fecha_publicacion = ?, imagen = ? WHERE id = ?");
+        $query->execute([$titulo, $autor, $genero, $fecha, $pathImg, $id]);
     }
 }
 ?>

@@ -54,7 +54,7 @@ class LibrosController {
             $fecha = $_POST["fechaInput"];
 
             //Si se envío una imágen a través del form y su extensión es válida ...
-            if ($_FILES["imagenInput"] && ($_FILES["imagenInput"]["type"] == "image/jpg" || $_FILES["imagenInput"]["type"] == "image/jpeg" || $_FILES["imagenInput"]["type"] == "image/png")) {
+            if (isset($_FILES["imagenInput"]) && ($_FILES["imagenInput"]["type"] == "image/jpg" || $_FILES["imagenInput"]["type"] == "image/jpeg" || $_FILES["imagenInput"]["type"] == "image/png")) {
 
                 $img = $_FILES["imagenInput"]["tmp_name"]; //Nombre temporal del archivo
                 $path = $this->uploadImage($img); //Se obtiene el path donde está guardado el archivo
@@ -102,10 +102,19 @@ class LibrosController {
             $genero = $_POST["generoInput"];            
             $fecha = $_POST["fechaInput"];
 
-            $id = $params[":ID"];
-            if ($this->model->getLibro($id)) {
+            $id = $params[":ID"]; //Se obtiene el ID de la URL
+            if ($this->model->getLibro($id)) { //Si el libro con el ID obtenido existe ...
 
-                $this->model->editLibro($titulo, $autor, $genero, $fecha, $id);
+                if ($_FILES["imagenInput"] && ($_FILES["imagenInput"]["type"] == "image/jpg" || $_FILES["imagenInput"]["type"] == "image/jpeg" || $_FILES["imagenInput"]["type"] == "image/png")) {
+
+                    $img = $_FILES["imagenInput"]["tmp_name"];
+                    $path = $this->uploadImage($img);
+
+                    $this->model->editLibro($titulo, $autor, $genero, $fecha, $id, $path); //Se pone el path siempre al final porque sino me da error de tokens
+                } else {
+                    
+                    $this->model->editLibro($titulo, $autor, $genero, $fecha, $id);
+                }                
                 header("Location: ".BASE_URL."libros/$id");
             } else {
                 $this->view->showError("El libro que se quiere editar no existe");
