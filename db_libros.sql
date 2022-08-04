@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-07-2022 a las 14:14:45
+-- Tiempo de generación: 04-08-2022 a las 17:22:25
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -78,19 +78,22 @@ CREATE TABLE `libro` (
   `titulo` varchar(40) NOT NULL,
   `id_autor` int(11) NOT NULL,
   `genero` varchar(20) NOT NULL,
-  `fecha_publicacion` date NOT NULL
+  `fecha_publicacion` date NOT NULL,
+  `imagen` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `libro`
 --
 
-INSERT INTO `libro` (`id`, `titulo`, `id_autor`, `genero`, `fecha_publicacion`) VALUES
-(1, 'El gato negro', 1, 'Terror', '1843-08-19'),
-(2, 'El cuervo', 1, 'Drama', '1845-01-29'),
-(3, 'El hobbit', 3, 'Fantasía heroíca', '1937-09-21'),
-(6, 'El resplandor', 2, 'Drama', '1977-01-28'),
-(9, 'Otro libro', 4, 'Misterio', '2022-07-02');
+INSERT INTO `libro` (`id`, `titulo`, `id_autor`, `genero`, `fecha_publicacion`, `imagen`) VALUES
+(1, 'El gato negro', 1, 'Terror', '1843-08-19', NULL),
+(2, 'El cuervo', 1, 'Drama', '1845-01-29', NULL),
+(3, 'El hobbit', 3, 'Fantasía heroíca', '1937-09-21', NULL),
+(6, 'El resplandor', 2, 'Drama', '1977-01-28', NULL),
+(9, 'Otro libro', 4, 'Misterio', '2022-07-02', NULL),
+(12, 'Mitos nórdicos', 8, 'Novela', '2004-06-25', 'img/librosImg/62ebe1a53347a.jpg'),
+(13, 'Libro sin imágen', 4, 'Prueba', '2022-08-09', NULL);
 
 -- --------------------------------------------------------
 
@@ -158,13 +161,13 @@ ALTER TABLE `autor`
 -- AUTO_INCREMENT de la tabla `comentario`
 --
 ALTER TABLE `comentario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `libro`
 --
 ALTER TABLE `libro`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`

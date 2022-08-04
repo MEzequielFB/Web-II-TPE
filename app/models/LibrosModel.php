@@ -32,10 +32,10 @@ class LibrosModel {
         return $query->fetch(PDO::FETCH_OBJ);
     }
 
-    function insertLibro($titulo, $autor, $genero, $fecha) {
+    function insertLibro($titulo, $autor, $genero, $fecha, $pathImg = null) {
 
-        $query = $this->db->prepare("INSERT INTO libro(titulo, id_autor, genero, fecha_publicacion) VALUES(?,?,?,?)");
-        $query->execute([$titulo, $autor, $genero, $fecha]);
+        $query = $this->db->prepare("INSERT INTO libro(titulo, id_autor, genero, fecha_publicacion, imagen) VALUES(?,?,?,?,?)");
+        $query->execute([$titulo, $autor, $genero, $fecha, $pathImg]);
         
         return $this->db->lastInsertId();
     }

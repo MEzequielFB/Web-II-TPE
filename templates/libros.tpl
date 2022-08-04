@@ -15,7 +15,7 @@
 {if $rolUsuario eq 1}
 
     <h1>Añadir un libro</h1>
-    <form action="libros/add" method="post" class="addLibroForm">
+    <form action="libros/add" method="post" class="addLibroForm" enctype="multipart/form-data"> <!--enctype="multipart/form-data" permite el envío de archivos al servidor-->
         <div class="form-floating mb-3">
             <input type="text" class="form-control" name="tituloInput" id="tituloInput" required placeholder="Título">
             <label for="tituloInput">Título</label>
@@ -38,6 +38,11 @@
 
         <label for="fechaInput" class="labelForm">Fecha de publicación: </label>
         <input type="date" name="fechaInput" id="fechaInput" required>
+
+        <div class="input-group mb-3"> <!--Input adjuntar una imágen al libro-->
+            <label class="input-group-text" for="imagenInput">Imágen</label>
+            <input type="file" class="form-control" name="imagenInput" id="imagenInput">
+        </div>
 
         <button class="btn btn-outline-secondary" id="button-addon1">Agregar libro</button>
     </form>

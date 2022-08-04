@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     }
 
-    async function darComportamientoBtns() {
+    function darComportamientoBtns() {
 
         let comentarioDeleteBtns = document.querySelectorAll(".comentarioDeleteBtn");
         for (let btn of comentarioDeleteBtns) {

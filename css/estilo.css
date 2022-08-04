@@ -28,6 +28,11 @@ table a {
     margin: 2% auto;
     font-size: 21px;
 }
+.listaLibro img {
+    width: 20%;
+    height: 400px;
+    border-radius: 10px;
+}
 .librosTabla td {
     padding: 1% 1% 1% 0.5%;
 }

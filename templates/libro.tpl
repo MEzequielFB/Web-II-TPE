@@ -17,7 +17,10 @@
     <li class="list-group-item list-group-item-action list-group-item-dark active" aria-current="true"><span class="negrita">Título:</span> {$libro->titulo}</li>
     <li class="list-group-item list-group-item-action list-group-item-dark"><span class="negrita">Género:</span> {$libro->genero}</li>
     <li class="list-group-item list-group-item-action list-group-item-dark"><span class="negrita">Autor:</span> {$libro->nombre_autor}</li>
-    <li class="list-group-item list-group-item-action list-group-item-dark"><span class="negrita">Fecha de publicación:</span> {$libro->fecha_publicacion}</li>
+    <li class="list-group-item list-group-item-action list-group-item-dark"><span class="negrita">Fecha de publicación:</span> {$libro->fecha_publicacion}</li>    
+    {if $libro->imagen neq null}
+        <li class="list-group-item list-group-item-action list-group-item-dark"><img src="{$libro->imagen}"></li>
+    {/if}
 </ul>
 
 <h1>Editar libro</h1>

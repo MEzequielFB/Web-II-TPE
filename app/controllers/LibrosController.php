@@ -53,7 +53,18 @@ class LibrosController {
             $genero = $_POST["generoInput"];            
             $fecha = $_POST["fechaInput"];
 
-            $id = $this->model->insertLibro($titulo, $autor, $genero, $fecha);
+            //Si se envío una imágen a través del form y su extensión es válida ...
+            if ($_FILES["imagenInput"] && ($_FILES["imagenInput"]["type"] == "image/jpg" || $_FILES["imagenInput"]["type"] == "image/jpeg" || $_FILES["imagenInput"]["type"] == "image/png")) {
+
+                $img = $_FILES["imagenInput"]["tmp_name"]; //Nombre temporal del archivo
+                $path = $this->uploadImage($img); //Se obtiene el path donde está guardado el archivo
+
+                $id = $this->model->insertLibro($titulo, $autor, $genero, $fecha, $path); //Se inserta el libro junto con el path de la imágen
+            } else {
+
+                $id = $this->model->insertLibro($titulo, $autor, $genero, $fecha); //Se inserta el libro sin una imágen adjunta
+            }
+            
             if ($this->model->getLibro($id)) {
 
                 header("Location: ".BASE_URL);
@@ -95,13 +106,21 @@ class LibrosController {
             if ($this->model->getLibro($id)) {
 
                 $this->model->editLibro($titulo, $autor, $genero, $fecha, $id);
-                header("Location: ".BASE_URL);
+                header("Location: ".BASE_URL."libros/$id");
             } else {
                 $this->view->showError("El libro que se quiere editar no existe");
             }
         } else {
             header("Location: ".BASE_URL);
         }
+    }
+
+    private function uploadImage($img) {
+
+        $target = "img/librosImg/".uniqid().".jpg"; //Se define el path donde se va a guardar el archivo y se le da un ID por si existen archivos con el mismo nombre
+        move_uploaded_file($img, $target); //Se guarda el archivo en el path definido
+
+        return $target; //Se devuelve el path para insertarlo en la base de datos
     }
 }
 ?>
