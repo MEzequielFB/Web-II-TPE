@@ -51,5 +51,11 @@ class LibrosModel {
         $query = $this->db->prepare("UPDATE libro SET titulo = ?, id_autor = ?, genero = ?, fecha_publicacion = ?, imagen = ? WHERE id = ?");
         $query->execute([$titulo, $autor, $genero, $fecha, $pathImg, $id]);
     }
+
+    function deleteImg($id) {
+
+        $query = $this->db->prepare("UPDATE libro SET imagen = null WHERE id = ?");
+        $query->execute([$id]);
+    }
 }
 ?>

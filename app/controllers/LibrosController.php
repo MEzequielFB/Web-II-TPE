@@ -131,5 +131,22 @@ class LibrosController {
 
         return $target; //Se devuelve el path para insertarlo en la base de datos
     }
+
+    function deleteImgLibro($params = null) {
+
+        if ($this->authHelper->getUsuarioRol() == 1) {
+
+            $id = $params[":ID"];
+            if ($this->model->getLibro($id)) {
+
+                $this->model->deleteImg($id);
+                header("Location: ".BASE_URL."libros/$id");
+            } else {
+                $this->view->showError("El libro que se quiere manipular no existe");
+            }
+        } else {
+            header("Location: ".BASE_URL);
+        }
+    }
 }
 ?>

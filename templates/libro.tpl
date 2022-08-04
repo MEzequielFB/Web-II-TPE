@@ -7,6 +7,7 @@
     {/if}
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="{$base_url}js/comentarios.js"></script>
+    <script src="{$base_url}js/hideFileInput.js"></script>
 </head>
 <body>
 {include file="navbar.tpl"}
@@ -19,7 +20,12 @@
     <li class="list-group-item list-group-item-action list-group-item-dark"><span class="negrita">Autor:</span> {$libro->nombre_autor}</li>
     <li class="list-group-item list-group-item-action list-group-item-dark"><span class="negrita">Fecha de publicación:</span> {$libro->fecha_publicacion}</li>    
     {if $libro->imagen neq null}
-        <li class="list-group-item list-group-item-action list-group-item-dark"><img src="{$libro->imagen}"></li>
+        <li class="list-group-item list-group-item-action list-group-item-dark libroImagenItem">
+            <img src="{$libro->imagen}">
+            {if $rolUsuario eq 1}
+                <a href="libros/img/delete/{$libro->id}"><img src="img/cancel.png" class="deleteImgBtn"></a>
+            {/if}            
+        </li>
     {/if}
 </ul>
 
@@ -54,7 +60,7 @@
         <label for="fechaInput" class="labelForm">Fecha de publicación: </label>
         <input type="date" name="fechaInput" id="fechaInput" value="{$libro->fecha_publicacion}" required>
 
-        <div class="input-group mb-3"> <!--Input adjuntar una imágen al libro-->
+        <div class="input-group mb-3 imagenInputDiv"> <!--Input adjuntar una imágen al libro-->
             <label class="input-group-text" for="imagenInput">Imágen</label>
             <input type="file" class="form-control" name="imagenInput" id="imagenInput">
         </div>
