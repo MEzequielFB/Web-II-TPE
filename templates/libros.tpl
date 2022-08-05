@@ -12,6 +12,17 @@
 <h1>Libros</h1>
 {include file="librosTabla.tpl"}
 
+<nav aria-label="Page navigation example" class="librosNav">
+  <ul class="pagination">
+    {if $pagina neq 1} <!--Si el usuario está en la primera página se oculta el item-->
+        <li class="page-item"><a class="page-link" href="page/{$pagina-1}">Anterior</a></li>
+    {/if}
+    {if $cantLibros eq 5} <!--Si se muestran menos de 5 libros se oculta el item-->
+        <li class="page-item"><a class="page-link" href="page/{$pagina+1}">Siguiente</a></li>
+    {/if}    
+  </ul>
+</nav>
+
 {if $rolUsuario eq 1}
 
     <h1>Añadir un libro</h1>

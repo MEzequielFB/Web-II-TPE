@@ -9,6 +9,7 @@ $r = new Router();
 
 //Libros
 $r->setDefaultRoute("LibrosController", "showHome");
+$r->addRoute("page/:PAGE", "GET", "LibrosController", "showHome"); //URL para la paginación de libros
 $r->addRoute("libros/:ID", "GET", "LibrosController", "showLibro");
 $r->addRoute("libros/add", "POST", "LibrosController", "addLibro");
 $r->addRoute("libros/delete/:ID", "GET", "LibrosController", "deleteLibro");

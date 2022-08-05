@@ -20,13 +20,26 @@ class LibrosController {
         $this->view = new LibrosView($this->authHelper->getUsuarioNombre(), $this->authHelper->getUsuarioRol());
     }
 
-    function showHome() {
+    function showHome($params = null) { //El parámetro es el número de página
+
+        if ($params == null) { //La variable pagina sirve para calcular el OFFSET en la consulta SELECT de los libros
+            $pagina = 1;
+        } else {
+            $pagina = $params[":PAGE"];
+        }
+
+        $offset = ($pagina-1) * 5;
+        if ($offset < 0) { //Si offset es menor a 0 se envía al usuario a la primera página ya que el servidor da error al ser un número negativo. No se puede tener un offset menor a 0 en la consulta
+            header("Location: ".BASE_URL);
+        }
 
         $autoresModel = new AutoresModel();
         $autores = $autoresModel->getAutores();
 
-        $libros = $this->model->getLibros();
-        $this->view->showHome($libros, $autores);
+        $libros = $this->model->getLibros($offset);
+        $cantLibros = count($libros);
+
+        $this->view->showHome($libros, $autores, $pagina, $cantLibros); //Se pasa por parámetro la página y la cantidad de libros para deshabilitar los botones de paginación
     }
 
     function showLibro($params = null) {

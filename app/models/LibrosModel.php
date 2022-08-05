@@ -8,10 +8,10 @@ class LibrosModel {
         $this->db = new PDO('mysql:host=localhost;'.'dbname=db_libros;charset=utf8', 'root', '');
     }
 
-    function getLibros() {
+    function getLibros($offset) {
 
-        $query = $this->db->prepare("SELECT l.*, a.nombre AS nombre_autor FROM libro l JOIN autor a ON l.id_autor = a.id");
-        $query->execute();
+        $query = $this->db->prepare("SELECT l.*, a.nombre AS nombre_autor FROM libro l JOIN autor a ON l.id_autor = a.id ORDER BY a.nombre LIMIT $offset,5"); //Se pasa directamente la varible porque salta error de la sintáxis de la consulta
+        $query->execute([]);
 
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
