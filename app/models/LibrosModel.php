@@ -8,10 +8,18 @@ class LibrosModel {
         $this->db = new PDO('mysql:host=localhost;'.'dbname=db_libros;charset=utf8', 'root', '');
     }
 
-    function getLibros($offset) {
+    function getLibrosOffset($offset, $limit) { //Obtiene una cantidad determinada de libros
 
-        $query = $this->db->prepare("SELECT l.*, a.nombre AS nombre_autor FROM libro l JOIN autor a ON l.id_autor = a.id ORDER BY a.nombre LIMIT $offset,5"); //Se pasa directamente la varible porque salta error de la sintáxis de la consulta
-        $query->execute([]);
+        $query = $this->db->prepare("SELECT l.*, a.nombre AS nombre_autor FROM libro l JOIN autor a ON l.id_autor = a.id ORDER BY a.nombre LIMIT $offset,$limit"); //Se pasa directamente la variable porque salta error de la sintáxis de la consulta
+        $query->execute();
+
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    function getLibros() { //Obtiene todos los libros
+
+        $query = $this->db->prepare("SELECT l.*, a.nombre AS nombre_autor FROM libro l JOIN autor a ON l.id_autor = a.id ORDER BY a.nombre");
+        $query->execute();
 
         return $query->fetchAll(PDO::FETCH_OBJ);
     }

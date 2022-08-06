@@ -17,6 +17,9 @@
     {if $pagina neq 1} <!--Si el usuario está en la primera página se oculta el item-->
         <li class="page-item"><a class="page-link" href="page/{$pagina-1}">Anterior</a></li>
     {/if}
+    {for $i = 1 to $cantPaginas} <!--Crea items dependiendo de la cantidad de páginas que haya-->
+        <li class="page-item"><a class="page-link" href="page/{$i}">{$i}</a></li>
+    {/for}
     {if $cantLibros eq 5} <!--Si se muestran menos de 5 libros se oculta el item-->
         <li class="page-item"><a class="page-link" href="page/{$pagina+1}">Siguiente</a></li>
     {/if}    

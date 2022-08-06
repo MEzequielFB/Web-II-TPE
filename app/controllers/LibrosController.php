@@ -22,24 +22,35 @@ class LibrosController {
 
     function showHome($params = null) { //El parámetro es el número de página
 
+        //1. Define la página en la que está el usuario
         if ($params == null) { //La variable pagina sirve para calcular el OFFSET en la consulta SELECT de los libros
             $pagina = 1;
         } else {
             $pagina = $params[":PAGE"];
         }
 
-        $offset = ($pagina-1) * 5;
+        //2. Define limit y offset
+        $limit = 5; //Cantidad de libros que se muestran por página
+        $offset = ($pagina-1) * 5; //Número de fila por la cual se empieza a obtener datos
         if ($offset < 0) { //Si offset es menor a 0 se envía al usuario a la primera página ya que el servidor da error al ser un número negativo. No se puede tener un offset menor a 0 en la consulta
             header("Location: ".BASE_URL);
         }
 
-        $autoresModel = new AutoresModel();
+        //3. Define la cantidad de páginas necesarias para la paginación
+        $cantLibrosTotal = count($this->model->getLibros()); //Obtiene la cantidad de registros de libros que existen en la BdD
+        $cantPaginas = ceil($cantLibrosTotal / $limit); //Calcula la cantidad de páginas que se necesitan para mostrar todos los libros
+        //ceil() redondea losa decimales para arriba
+
+        //4. Obtiene todos los autores
+        $autoresModel = new AutoresModel(); //Obtiene todos los autores para el select en la inserción de libros
         $autores = $autoresModel->getAutores();
 
-        $libros = $this->model->getLibros($offset);
-        $cantLibros = count($libros);
+        //5. Obtiene libros con un offset y un limit como parámetros
+        $librosOffset = $this->model->getLibrosOffset($offset, $limit);
+        $cantLibros = count($librosOffset); //Cuenta la cantidad de libros para mostrar u ocultar el item 'siguiente' del template
 
-        $this->view->showHome($libros, $autores, $pagina, $cantLibros); //Se pasa por parámetro la página y la cantidad de libros para deshabilitar los botones de paginación
+        //Se llama a la función de la view
+        $this->view->showHome($librosOffset, $autores, $pagina, $cantLibros, $cantPaginas); //Se pasa por parámetro la página y la cantidad de libros para deshabilitar los botones de paginación
     }
 
     function showLibro($params = null) {
