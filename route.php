@@ -9,12 +9,13 @@ $r = new Router();
 
 //Libros
 $r->setDefaultRoute("LibrosController", "showHome");
-$r->addRoute("page/:PAGE", "GET", "LibrosController", "showHome"); //URL para la paginación de libros
+$r->addRoute("libros/page/:PAGE", "GET", "LibrosController", "showHome"); //URL para la paginación de libros
 $r->addRoute("libros/:ID", "GET", "LibrosController", "showLibro");
 $r->addRoute("libros/add", "POST", "LibrosController", "addLibro");
 $r->addRoute("libros/delete/:ID", "GET", "LibrosController", "deleteLibro");
 $r->addRoute("libros/edit/:ID", "POST", "LibrosController", "editLibro");
 $r->addRoute("libros/img/delete/:ID", "GET", "LibrosController", "deleteImgLibro");
+$r->addRoute("libros/search/page/:PAGE", "POST", "LibrosController", "showLibrosSearch");
 
 //Autores
 $r->addRoute("autores", "GET", "AutoresController", "showAutores");

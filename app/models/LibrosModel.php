@@ -65,5 +65,21 @@ class LibrosModel {
         $query = $this->db->prepare("UPDATE libro SET imagen = null WHERE id = ?");
         $query->execute([$id]);
     }
+
+    function getLibrosSearch($busqueda) {
+
+        $query = $this->db->prepare("SELECT l.*, a.nombre AS nombre_autor FROM libro l JOIN autor a ON l.id_autor = a.id WHERE l.titulo LIKE CONCAT('%',?,'%') OR l.genero LIKE CONCAT('%',?,'%') OR a.nombre LIKE CONCAT('%',?,'%') ORDER BY a.nombre");
+        $query->execute([$busqueda, $busqueda, $busqueda]);
+
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    function getLibrosSearchOffset($busqueda, $offset, $limit) {
+
+        $query = $this->db->prepare("SELECT l.*, a.nombre AS nombre_autor FROM libro l JOIN autor a ON l.id_autor = a.id WHERE l.titulo LIKE CONCAT('%',?,'%') OR l.genero LIKE CONCAT('%',?,'%') OR a.nombre LIKE CONCAT('%',?,'%') ORDER BY a.nombre LIMIT $offset,$limit");
+        $query->execute([$busqueda, $busqueda, $busqueda]);
+
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
 }
 ?>

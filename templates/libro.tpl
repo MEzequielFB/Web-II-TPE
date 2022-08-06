@@ -31,7 +31,7 @@
 
 <h1>Editar libro</h1>
 {if $rolUsuario eq 1}
-    <form action="libros/edit/{$libro->id}" method="post" class="editLibroForm" enctype="multipart/form-data">
+    <form action="libros/edit/{$libro->id}" method="post" class="libroForm" enctype="multipart/form-data">
         <div class="form-floating mb-3">
             <input type="text" class="form-control" name="tituloInput" id="tituloInput" required placeholder="Título" value="{$libro->titulo}">
             <label for="tituloInput">Título</label>

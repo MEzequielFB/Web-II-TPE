@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function(){
     "use strict";
 
     let alerta = document.querySelector(".alertaSelect");
-    document.querySelector("form").addEventListener("submit", function(e){
+    document.querySelector(".libroForm").addEventListener("submit", function(e){
 
         if (document.querySelector("#autorSelect").value == "noAutor") {
             e.preventDefault();

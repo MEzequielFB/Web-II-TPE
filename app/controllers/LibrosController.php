@@ -53,7 +53,7 @@ class LibrosController {
         $cantLibrosSigPagina = count($this->model->getLibrosOffset($offset, $limit)); //Cuenta la cantidad de libros de la siguiente página para mostrar u ocultar el item 'siguiente' del template
 
         //Se llama a la función de la view
-        $this->view->showHome($librosOffset, $autores, $pagina, $cantLibrosSigPagina, $cantPaginas); //Se pasa por parámetro la página y la cantidad de libros para deshabilitar los botones de paginación
+        $this->view->showHome($librosOffset, $autores, $pagina, $cantLibrosSigPagina, $cantPaginas, "libros/page"); //Se pasa por parámetro la página y la cantidad de libros para deshabilitar los botones de paginación
     }
 
     function showLibro($params = null) {
@@ -174,6 +174,39 @@ class LibrosController {
         } else {
             header("Location: ".BASE_URL);
         }
+    }
+
+    function showLibrosSearch($params = null) {
+
+        if (isset($_POST["libroSearchInput"])) {
+
+            $busqueda = $_POST["libroSearchInput"];
+        }
+                
+        if ($params == null) {
+            $pagina = 1;
+        } else {
+            $pagina = $params[":PAGE"];
+        }
+
+        $limit = 5;
+        $offset = ($pagina-1) * 5;
+        if ($offset < 0) {
+            header("Location: ".BASE_URL);
+        }
+        
+        $cantLibrosTotal = count($this->model->getLibrosSearch($busqueda));
+        $cantPaginas = ceil($cantLibrosTotal / $limit);
+
+        $autoresModel = new AutoresModel();
+        $autores = $autoresModel->getAutores();
+
+        $librosOffset = $this->model->getLibrosSearchOffset($busqueda, $offset, $limit);
+
+        $offset = $offset + 5;
+        $cantLibrosSigPagina = count($this->model->getLibrosSearchOffset($busqueda, $offset, $limit));
+
+        $this->view->showHome($librosOffset, $autores, $pagina, $cantLibrosSigPagina, $cantPaginas, "libros/search/page");        
     }
 }
 ?>
