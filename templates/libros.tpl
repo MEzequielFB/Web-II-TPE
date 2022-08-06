@@ -20,7 +20,7 @@
     {for $i = 1 to $cantPaginas} <!--Crea items dependiendo de la cantidad de páginas que haya-->
         <li class="page-item"><a class="page-link" href="page/{$i}">{$i}</a></li>
     {/for}
-    {if $cantLibros eq 5} <!--Si se muestran menos de 5 libros se oculta el item-->
+    {if $cantLibrosSigPagina neq 0} <!--Si en la siguiente página no hay más libros se oculta el item-->
         <li class="page-item"><a class="page-link" href="page/{$pagina+1}">Siguiente</a></li>
     {/if}    
   </ul>

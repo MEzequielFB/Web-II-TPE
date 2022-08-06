@@ -14,13 +14,13 @@ class LibrosView {
         $this->smarty->assign("rolUsuario", $rolUsuario);
     }
 
-    function showHome($libros, $autores, $pagina, $cantLibros, $cantPaginas) {
+    function showHome($libros, $autores, $pagina, $cantLibrosSigPagina, $cantPaginas) {
 
         $this->smarty->assign("titulo", "Home");
         $this->smarty->assign("libros", $libros);
         $this->smarty->assign("autores", $autores);
         $this->smarty->assign("pagina", $pagina);
-        $this->smarty->assign("cantLibros", $cantLibros);
+        $this->smarty->assign("cantLibrosSigPagina", $cantLibrosSigPagina);
         $this->smarty->assign("cantPaginas", $cantPaginas);
 
         $this->smarty->display("templates/libros.tpl");

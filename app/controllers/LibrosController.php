@@ -47,10 +47,13 @@ class LibrosController {
 
         //5. Obtiene libros con un offset y un limit como parámetros
         $librosOffset = $this->model->getLibrosOffset($offset, $limit);
-        $cantLibros = count($librosOffset); //Cuenta la cantidad de libros para mostrar u ocultar el item 'siguiente' del template
+
+        //Cuenta la cantidad de libros de la próxima pagina
+        $offset = $offset + 5;
+        $cantLibrosSigPagina = count($this->model->getLibrosOffset($offset, $limit)); //Cuenta la cantidad de libros de la siguiente página para mostrar u ocultar el item 'siguiente' del template
 
         //Se llama a la función de la view
-        $this->view->showHome($librosOffset, $autores, $pagina, $cantLibros, $cantPaginas); //Se pasa por parámetro la página y la cantidad de libros para deshabilitar los botones de paginación
+        $this->view->showHome($librosOffset, $autores, $pagina, $cantLibrosSigPagina, $cantPaginas); //Se pasa por parámetro la página y la cantidad de libros para deshabilitar los botones de paginación
     }
 
     function showLibro($params = null) {
