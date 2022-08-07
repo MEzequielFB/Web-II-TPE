@@ -1,4 +1,5 @@
-<div class="comentariosDiv" id="libroDiv{$libro->id}">    
+<div class="comentariosDiv" id="libroDiv{$libro->id}">
+    <button type="button" class="btn btn-dark sortPuntuacionBtn">Puntuación{literal}<img :src="icono" class="puntuacionImg hide">{/literal}</button>
     <div class="comentarioDiv" v-for="comentario in comentarios">
         {literal} <!--El tag literal de Smarty se usa para que no compile las llaves de Vue-->
             <h4>{{comentario.usuario}}</h4>

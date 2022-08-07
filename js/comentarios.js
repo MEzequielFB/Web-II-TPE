@@ -9,11 +9,12 @@ document.addEventListener("DOMContentLoaded", function(){
         
         el: ".comentariosDiv",
         data: {
-            comentarios: []
+            comentarios: [],
+            icono: ""
         }
     });
 
-    async function showComentarios() {
+    async function showComentarios(sortPuntuacion = null) {
 
         try {
 
@@ -21,6 +22,21 @@ document.addEventListener("DOMContentLoaded", function(){
             if (response.ok) {
 
                 let comentarios = await response.json();
+
+                if (sortPuntuacion == "desc") {
+
+                    comentarios.sort(function(a, b) {
+                        return b.puntuacion - a.puntuacion;
+                    });
+                } else if (sortPuntuacion == "asc") {
+
+                    comentarios.sort(function(a, b) {
+                        return a.puntuacion - b.puntuacion;
+                    });
+                }
+                
+                console.log(comentarios);
+
                 app.comentarios = comentarios;
                 //Agrega comportamiento a los botones luego de un segundo (sin timeOut no da tiempo a cargar los comentarios)
                 setTimeout(darComportamientoBtns, 1000);
@@ -106,6 +122,21 @@ document.addEventListener("DOMContentLoaded", function(){
 
     let comentarioBtn = document.querySelector("#comentarioBtn");
     comentarioBtn.addEventListener("click", addComentario);
+    
+    let sortPuntuacionBtn = document.querySelector(".sortPuntuacionBtn");
+    sortPuntuacionBtn.addEventListener("click", function(){        
+
+        if (app.icono == "" || app.icono == "img/up-arrow.png") {
+
+            showComentarios("desc");
+            document.querySelector(".puntuacionImg").classList.remove("hide");
+            app.icono = "img/down-arrow.png";
+        } else {
+
+            showComentarios("asc");
+            app.icono = "img/up-arrow.png";
+        }
+    });
 
     showComentarios();
 });

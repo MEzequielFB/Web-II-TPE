@@ -155,6 +155,13 @@ form .alertaSelect {
 .comentariosDiv, .comentarioDiv {
     padding: 1%;
 }
+.comentariosDiv button {
+    width: 10%;
+}
+.sortPuntuacionBtn img {
+    width: 15%;
+    margin-left: 1%;
+}
 .comentarioDiv {
     position: relative;
     width: 50%;
