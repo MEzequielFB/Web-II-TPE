@@ -9,12 +9,12 @@ document.addEventListener("DOMContentLoaded", function(){
         
         el: ".comentariosDiv",
         data: {
-            comentarios: [],
-            icono: ""
+            comentarios: [], //Array de comentarios
+            icono: "" //Src de las imágenes de los botones que ordenan los comentarios
         }
     });
 
-    async function showComentarios(sortPuntuacion = null) {
+    async function showComentarios(sortPuntuacion = null, sortAntiguedad = null) { //Parámetros para ordenar los comentarios
 
         try {
 
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
                 let comentarios = await response.json();
 
-                if (sortPuntuacion == "desc") {
+                if (sortPuntuacion == "desc") { //Ifs para el orden de los comentarios
 
                     comentarios.sort(function(a, b) {
                         return b.puntuacion - a.puntuacion;
@@ -32,6 +32,11 @@ document.addEventListener("DOMContentLoaded", function(){
 
                     comentarios.sort(function(a, b) {
                         return a.puntuacion - b.puntuacion;
+                    });
+                } else if (sortAntiguedad != null) {
+
+                    comentarios.sort(function(a, b) {
+                        return b.id - a.id;
                     });
                 }
                 
@@ -123,18 +128,46 @@ document.addEventListener("DOMContentLoaded", function(){
     let comentarioBtn = document.querySelector("#comentarioBtn");
     comentarioBtn.addEventListener("click", addComentario);
     
+    let puntuacionImg = document.querySelector(".puntuacionImg");
+    let antiguedadImg = document.querySelector(".antiguedadImg");
+
     let sortPuntuacionBtn = document.querySelector(".sortPuntuacionBtn");
     sortPuntuacionBtn.addEventListener("click", function(){        
 
         if (app.icono == "" || app.icono == "img/up-arrow.png") {
 
-            showComentarios("desc");
-            document.querySelector(".puntuacionImg").classList.remove("hide");
+            showComentarios("desc"); //De mayor puntaje a menor
             app.icono = "img/down-arrow.png";
+
+            puntuacionImg.classList.remove("hide");
+            antiguedadImg.classList.add("hide");
         } else {
 
-            showComentarios("asc");
+            showComentarios("asc"); //De menor puntaje a mayor
             app.icono = "img/up-arrow.png";
+
+            puntuacionImg.classList.remove("hide");
+            antiguedadImg.classList.add("hide");
+        }
+    });
+
+    let sortAntiguedadBtn = document.querySelector(".sortAntiguedadBtn");
+    sortAntiguedadBtn.addEventListener("click", function(){
+
+        if (app.icono == "" || app.icono == "img/up-arrow.png") {
+
+            showComentarios(null, "desc"); //De recientes a antiguos
+            app.icono = "img/down-arrow.png";
+
+            puntuacionImg.classList.add("hide");
+            antiguedadImg.classList.remove("hide");
+        } else {
+
+            showComentarios(); //De más antiguos a recientes
+            app.icono = "img/up-arrow.png";
+
+            puntuacionImg.classList.add("hide");
+            antiguedadImg.classList.remove("hide");
         }
     });
 
