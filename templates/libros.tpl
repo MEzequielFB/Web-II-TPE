@@ -9,8 +9,8 @@
 <body>
 {include file="navbar.tpl"}
 
-<form action="libros/search/page/1" method="post" class="d-flex librosSearchForm">
-    <input class="form-control me-2" name="libroSearchInput" type="search" placeholder="Buscar un libro (título, género, autor)" aria-label="Search">
+<form action="libros/search/page/1" method="get" class="d-flex librosSearchForm">
+    <input class="form-control me-2" name="busqueda" type="search" placeholder="Buscar un libro (título, género, autor)" aria-label="Search">
     <button class="btn btn-outline-secondary librosSearchBtn">Buscar</button>    
 </form>
 
@@ -20,13 +20,13 @@
 <nav aria-label="Page navigation example" class="librosNav">
   <ul class="pagination">
     {if $pagina neq 1} <!--Si el usuario está en la primera página se oculta el item-->
-        <li class="page-item"><a class="page-link" href="{$url}/{$pagina-1}">Anterior</a></li>
+        <li class="page-item"><a class="page-link" href="{$url}/{$pagina-1}{$urlP2}">Anterior</a></li>
     {/if}
     {for $i = 1 to $cantPaginas} <!--Crea items dependiendo de la cantidad de páginas que haya-->
-        <li class="page-item"><a class="page-link" href="{$url}/{$i}">{$i}</a></li>
+        <li class="page-item"><a class="page-link" href="{$url}/{$i}{$urlP2}">{$i}</a></li>
     {/for}
     {if $cantLibrosSigPagina neq 0} <!--Si en la siguiente página no hay más libros se oculta el item-->
-        <li class="page-item"><a class="page-link" href="{$url}/{$pagina+1}">Siguiente</a></li>
+        <li class="page-item"><a class="page-link" href="{$url}/{$pagina+1}{$urlP2}">Siguiente</a></li>
     {/if}    
   </ul>
 </nav>

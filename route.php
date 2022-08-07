@@ -15,7 +15,7 @@ $r->addRoute("libros/add", "POST", "LibrosController", "addLibro");
 $r->addRoute("libros/delete/:ID", "GET", "LibrosController", "deleteLibro");
 $r->addRoute("libros/edit/:ID", "POST", "LibrosController", "editLibro");
 $r->addRoute("libros/img/delete/:ID", "GET", "LibrosController", "deleteImgLibro");
-$r->addRoute("libros/search/page/:PAGE", "POST", "LibrosController", "showLibrosSearch");
+$r->addRoute("libros/search/page/:PAGE", "GET", "LibrosController", "showLibrosSearch");
 
 //Autores
 $r->addRoute("autores", "GET", "AutoresController", "showAutores");

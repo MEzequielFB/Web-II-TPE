@@ -31,7 +31,7 @@ class LibrosController {
 
         //2. Define limit y offset
         $limit = 5; //Cantidad de libros que se muestran por página
-        $offset = ($pagina-1) * 5; //Número de fila por la cual se empieza a obtener datos
+        $offset = ($pagina-1) * $limit; //Número de fila por la cual se empieza a obtener datos
         if ($offset < 0) { //Si offset es menor a 0 se envía al usuario a la primera página ya que el servidor da error al ser un número negativo. No se puede tener un offset menor a 0 en la consulta
             header("Location: ".BASE_URL);
         }
@@ -49,7 +49,7 @@ class LibrosController {
         $librosOffset = $this->model->getLibrosOffset($offset, $limit);
 
         //Cuenta la cantidad de libros de la próxima pagina
-        $offset = $offset + 5;
+        $offset = $offset + $limit;
         $cantLibrosSigPagina = count($this->model->getLibrosOffset($offset, $limit)); //Cuenta la cantidad de libros de la siguiente página para mostrar u ocultar el item 'siguiente' del template
 
         //Se llama a la función de la view
@@ -178,35 +178,35 @@ class LibrosController {
 
     function showLibrosSearch($params = null) {
 
-        if (isset($_POST["libroSearchInput"])) {
+        if (isset($_GET["busqueda"])) { //Si existe un parámetro que viene por la URL se guarda en una variable
 
-            $busqueda = $_POST["libroSearchInput"];
+            $busqueda = $_GET["busqueda"];
         }
-                
+
         if ($params == null) {
             $pagina = 1;
         } else {
             $pagina = $params[":PAGE"];
         }
 
-        $limit = 5;
-        $offset = ($pagina-1) * 5;
+        $limit = 3;
+        $offset = ($pagina-1) * $limit;
         if ($offset < 0) {
             header("Location: ".BASE_URL);
         }
         
-        $cantLibrosTotal = count($this->model->getLibrosSearch($busqueda));
+        $cantLibrosTotal = count($this->model->getLibrosSearch($busqueda)); //Se obtienen todos los libros que coinciden con la búsqueda para calcular la cantidad de páginas necesarias
         $cantPaginas = ceil($cantLibrosTotal / $limit);
 
         $autoresModel = new AutoresModel();
         $autores = $autoresModel->getAutores();
 
-        $librosOffset = $this->model->getLibrosSearchOffset($busqueda, $offset, $limit);
+        $librosOffset = $this->model->getLibrosSearchOffset($busqueda, $offset, $limit); //Obtiene los libros que coinciden con la búsqueda con un offset y limit como parámetros
 
-        $offset = $offset + 5;
+        $offset = $offset + $limit;
         $cantLibrosSigPagina = count($this->model->getLibrosSearchOffset($busqueda, $offset, $limit));
 
-        $this->view->showHome($librosOffset, $autores, $pagina, $cantLibrosSigPagina, $cantPaginas, "libros/search/page");        
+        $this->view->showHome($librosOffset, $autores, $pagina, $cantLibrosSigPagina, $cantPaginas, "libros/search/page", "?busqueda=$busqueda"); //La segunda parte de la URL es para mantener el parámetro de búsqueda al cambiar de página
     }
 }
 ?>
