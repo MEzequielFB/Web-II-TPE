@@ -158,6 +158,13 @@ form .alertaSelect {
 .comentariosDiv button {
     width: 10%;
 }
+.comentariosDiv .puntuacionFilterBtn {
+    width: 15%;
+}
+.comentariosDiv select {
+    display: inline;
+    width: 20%;
+}
 button img {
     width: 15%;
     margin-left: 1%;

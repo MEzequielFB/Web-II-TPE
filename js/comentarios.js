@@ -125,6 +125,33 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     }
 
+    async function filterComentariosByPuntuacion() {
+
+        let puntuacion = puntuacionFilterBtn.previousElementSibling.value;
+        if (puntuacion == 0) {
+            showComentarios();
+            return;
+        }
+
+        try {
+
+            let response = await fetch("api/comentarios/"+libroId[0]+"/puntuacion/"+puntuacion);
+            if (response.ok) {
+
+                let comentarios = await response.json();
+                console.log(comentarios);
+
+                app.comentarios = comentarios;
+                setTimeout(darComportamientoBtns, 1000);
+            } else {
+                console.log("Error al obtener comentarios");
+            }
+        }
+        catch(error) {
+            console.log(error);
+        }
+    }
+
     let comentarioBtn = document.querySelector("#comentarioBtn");
     comentarioBtn.addEventListener("click", addComentario);
     
@@ -170,6 +197,9 @@ document.addEventListener("DOMContentLoaded", function(){
             antiguedadImg.classList.remove("hide");
         }
     });
+
+    let puntuacionFilterBtn = document.querySelector(".puntuacionFilterBtn");
+    puntuacionFilterBtn.addEventListener("click", filterComentariosByPuntuacion);
 
     showComentarios();
 });
