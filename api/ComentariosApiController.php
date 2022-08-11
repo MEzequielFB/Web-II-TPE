@@ -68,5 +68,23 @@ class ComentariosApiController extends ApiController {
             $this->view->response("No existe el libro indicado (id = $id)", 404);
         }
     }
+
+    function showComentariosSort($params = null) {
+
+        $id = $params[":ID"];
+        $campo = $params[":CAMPO"];
+        $orden = $params[":ORDEN"];
+
+        $librosModel = new LibrosModel();
+        $libro = $librosModel->getLibro($id);
+        if ($libro) {
+
+            $comentarios = $this->model->getComentariosLibroSort($id, $campo, $orden);
+            //$comentarios = $this->model->getComentariosLibro($id);
+            $this->view->response($comentarios, 200);
+        } else {
+            $this->view->response("No existe el libro indicado (id = $id)", 404);
+        }
+    }
 }
 ?>

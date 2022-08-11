@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function(){
     "use strict";
 
+    let url = "api/comentarios/";
+
     let comentariosDiv = document.querySelector(".comentariosDiv");
     let libroId = comentariosDiv.id.match(/(\d+)/); //Matchea si hay un número en el id del div y se guarda en un array
     console.log("ID libro: "+libroId[0]); //Se muestra el número en consola
@@ -14,16 +16,16 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     });
 
-    async function showComentarios(sortPuntuacion = null, sortAntiguedad = null) { //Parámetros para ordenar los comentarios
+    async function showComentarios(/*sortPuntuacion = null, sortAntiguedad = null*/) { //Parámetros para ordenar los comentarios del lado del cliente
 
         try {
 
-            let response = await fetch("api/comentarios/"+libroId[0]); //Se usa el número para obtener los comentarios de un libro en específico
+            let response = await fetch(url+libroId[0]); //Se usa el número para obtener los comentarios de un libro en específico
             if (response.ok) {
 
                 let comentarios = await response.json();
 
-                if (sortPuntuacion == "desc") { //Ifs para el orden de los comentarios
+                /*if (sortPuntuacion == "desc") { Ordena desde el lado del cliente
 
                     comentarios.sort(function(a, b) {
                         return b.puntuacion - a.puntuacion;
@@ -38,12 +40,34 @@ document.addEventListener("DOMContentLoaded", function(){
                     comentarios.sort(function(a, b) {
                         return b.id - a.id;
                     });
-                }
+                }*/
                 
                 console.log(comentarios);
 
                 app.comentarios = comentarios;
                 //Agrega comportamiento a los botones luego de un segundo (sin timeOut no da tiempo a cargar los comentarios)
+                setTimeout(darComportamientoBtns, 1000);
+            } else {
+                console.log("No se pudo acceder a los comentarios");
+            }
+        }
+        catch(error) {
+            console.log(error);
+        }
+    }
+
+    //Ordena comentarios desde el lado del servidor
+    async function showComentariosSort(campo, orden) { //Campo: puntuación o id, orden: ASC o DESC
+
+        try {
+
+            let response = await fetch(url+libroId[0]+"/sort/"+campo+"/"+orden); // api/comentarios/sort/'puntuacion'/'DESC'
+            if (response.ok) {
+
+                let comentarios = await response.json();
+                console.log(comentarios);
+
+                app.comentarios = comentarios;
                 setTimeout(darComportamientoBtns, 1000);
             } else {
                 console.log("No se pudo acceder a los comentarios");
@@ -65,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function(){
         }
 
         try {
-            let response = await fetch("api/comentarios", {
+            let response = await fetch(url, {
                 "method": "POST",
                 "headers": {
                     "Content-Type": "application/json"
@@ -91,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function(){
         
         try {
 
-            let response = await fetch("api/comentarios/"+id, {
+            let response = await fetch(url+id, {
                 "method": "DELETE"
             });
             if (response.ok) {
@@ -127,7 +151,8 @@ document.addEventListener("DOMContentLoaded", function(){
 
     async function filterComentariosByPuntuacion() {
 
-        let puntuacion = puntuacionFilterBtn.previousElementSibling.value;
+        //let puntuacion = puntuacionFilterBtn.previousElementSibling.value;
+        let puntuacion = puntuacionFilterSelect.value;
         if (puntuacion == 0) {
             showComentarios();
             return;
@@ -135,7 +160,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
         try {
 
-            let response = await fetch("api/comentarios/"+libroId[0]+"/puntuacion/"+puntuacion);
+            let response = await fetch(url+libroId[0]+"/puntuacion/"+puntuacion);
             if (response.ok) {
 
                 let comentarios = await response.json();
@@ -163,14 +188,14 @@ document.addEventListener("DOMContentLoaded", function(){
 
         if (app.icono == "" || app.icono == "img/up-arrow.png") {
 
-            showComentarios("desc"); //De mayor puntaje a menor
+            showComentariosSort("puntuacion", "DESC"); //De mayor puntaje a menor
             app.icono = "img/down-arrow.png";
 
             puntuacionImg.classList.remove("hide");
             antiguedadImg.classList.add("hide");
         } else {
 
-            showComentarios("asc"); //De menor puntaje a mayor
+            showComentariosSort("puntuacion", "ASC"); //De menor puntaje a mayor
             app.icono = "img/up-arrow.png";
 
             puntuacionImg.classList.remove("hide");
@@ -183,7 +208,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
         if (app.icono == "" || app.icono == "img/up-arrow.png") {
 
-            showComentarios(null, "desc"); //De recientes a antiguos
+            showComentariosSort("id", "DESC"); //De recientes a antiguos
             app.icono = "img/down-arrow.png";
 
             puntuacionImg.classList.add("hide");
@@ -198,8 +223,8 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     });
 
-    let puntuacionFilterBtn = document.querySelector(".puntuacionFilterBtn");
-    puntuacionFilterBtn.addEventListener("click", filterComentariosByPuntuacion);
+    let puntuacionFilterSelect = this.querySelector("#puntuacionFilterSelect");
+    puntuacionFilterSelect.addEventListener("input", filterComentariosByPuntuacion);
 
     showComentarios();
 });

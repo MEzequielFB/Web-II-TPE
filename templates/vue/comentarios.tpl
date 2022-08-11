@@ -9,7 +9,6 @@
         <option value="4">Puntuación: 4</option>
         <option value="5">Puntuación: 5</option>
     </select>
-    <button type="button" class="btn btn-dark puntuacionFilterBtn">Filtrar por puntuación</button>
     <div class="comentarioDiv" v-for="comentario in comentarios">
         {literal} <!--El tag literal de Smarty se usa para que no compile las llaves de Vue-->
             <h4>{{comentario.usuario}}</h4>
