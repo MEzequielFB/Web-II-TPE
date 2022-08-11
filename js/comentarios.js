@@ -78,6 +78,33 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     }
 
+    async function showComentariosByPuntuacion() {
+
+        let puntuacion = puntuacionFilterSelect.value;
+        if (puntuacion == 0) {
+            showComentarios();
+            return;
+        }
+
+        try {
+
+            let response = await fetch(url+libroId[0]+"/puntuacion/"+puntuacion);
+            if (response.ok) {
+
+                let comentarios = await response.json();
+                console.log(comentarios);
+
+                app.comentarios = comentarios;
+                setTimeout(darComportamientoBtns, 1000);
+            } else {
+                console.log("Error al obtener comentarios");
+            }
+        }
+        catch(error) {
+            console.log(error);
+        }
+    }
+
     async function addComentario() {
 
         let comentario =
@@ -149,40 +176,14 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     }
 
-    async function filterComentariosByPuntuacion() {
-
-        //let puntuacion = puntuacionFilterBtn.previousElementSibling.value;
-        let puntuacion = puntuacionFilterSelect.value;
-        if (puntuacion == 0) {
-            showComentarios();
-            return;
-        }
-
-        try {
-
-            let response = await fetch(url+libroId[0]+"/puntuacion/"+puntuacion);
-            if (response.ok) {
-
-                let comentarios = await response.json();
-                console.log(comentarios);
-
-                app.comentarios = comentarios;
-                setTimeout(darComportamientoBtns, 1000);
-            } else {
-                console.log("Error al obtener comentarios");
-            }
-        }
-        catch(error) {
-            console.log(error);
-        }
-    }
-
+    //Agrega un comentario
     let comentarioBtn = document.querySelector("#comentarioBtn");
     comentarioBtn.addEventListener("click", addComentario);
     
     let puntuacionImg = document.querySelector(".puntuacionImg");
     let antiguedadImg = document.querySelector(".antiguedadImg");
 
+    //Ordenan comentarios
     let sortPuntuacionBtn = document.querySelector(".sortPuntuacionBtn");
     sortPuntuacionBtn.addEventListener("click", function(){        
 
@@ -223,8 +224,9 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     });
 
+    //Filtra comentarios por puntuación
     let puntuacionFilterSelect = this.querySelector("#puntuacionFilterSelect");
-    puntuacionFilterSelect.addEventListener("input", filterComentariosByPuntuacion);
+    puntuacionFilterSelect.addEventListener("input", showComentariosByPuntuacion);
 
-    showComentarios();
+    showComentarios(); //Muestra comentarios
 });
